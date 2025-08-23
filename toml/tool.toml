@@ -55,3 +55,9 @@ lua_add = '''
 [[plugins]] # telescope depends
 repo = 'nvim-lua/plenary.nvim'
 
+[[plugins]] # git
+repo = 'lambdalisue/vim-gin'
+
+
+
+
