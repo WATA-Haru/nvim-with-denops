@@ -1,0 +1,58 @@
+[[plugins]] #filer
+repo = 'stevearc/oil.nvim'
+lua_add = '''
+    require("oil").setup()
+    -- Ex, Ve, Seコマンドを定義
+    vim.api.nvim_create_user_command("Ex", function(opts)
+      local path = opts.args
+      if path == "" then
+        vim.cmd("Oil %:p:h")
+      else
+        vim.cmd("Oil " .. path)
+      end
+    end, { nargs = '?', complete = 'file' }) -- complete='file'を追加
+    
+    vim.api.nvim_create_user_command("Ve", function(opts)
+      local path = opts.args
+      if path == "" then
+        vim.cmd("vertical Oil %:p:h")
+      else
+        vim.cmd("vertical Oil " .. path)
+      end
+    end, { nargs = '?', complete = 'file' })
+    
+    vim.api.nvim_create_user_command("Se", function(opts)
+      local path = opts.args
+      if path == "" then
+        vim.cmd("split Oil %:p:h")
+      else
+        vim.cmd("split Oil " .. path)
+      end
+    end, { nargs = '?', complete = 'file' })
+'''
+
+[[plugins]] #devicon
+repo = 'nvim-tree/nvim-web-devicons'
+
+[[plugins]] #colorscheme
+repo = 'jacoborus/tender.vim'
+
+[[plugins]] #fuzzy finder
+repo = 'nvim-telescope/telescope.nvim'
+lua_add = '''
+    config = function()
+      require('telescope').setup({
+				defaults = {
+						sorting_strategy = "ascending",
+						winblend = 4,
+						file_ignore_patterns = {
+							"^.git/",
+							"^node_modules/",
+						}
+				}
+		})
+		end,
+'''
+[[plugins]] # telescope depends
+repo = 'nvim-lua/plenary.nvim'
+
