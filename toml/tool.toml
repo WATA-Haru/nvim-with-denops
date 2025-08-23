@@ -58,6 +58,6 @@ repo = 'nvim-lua/plenary.nvim'
 [[plugins]] # git
 repo = 'lambdalisue/vim-gin'
 
-
-
+[[plugins]] # zen-mode
+repo = "folke/zen-mode.nvim"
 
