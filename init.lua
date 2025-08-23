@@ -117,6 +117,7 @@ vim.cmd("colorscheme tender")
 vim.cmd("set cursorline")
 vim.cmd("set cursorcolumn")
 vim.opt.clipboard = 'unnamedplus' --クリップボードとレジスタを共有
+
 -- clipboard
 if vim.fn.has("wsl") == 1 then
 	vim.g.clipboard = {
@@ -135,6 +136,11 @@ end
 
 local map = vim.api.nvim_set_keymap
 local opts = {noremap = true, silent = true}
+
+-- lsp
+require("lsp/lua_ls")
+require("lsp/vtsls")
+
 -- telescope
 map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
 map('n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', opts)

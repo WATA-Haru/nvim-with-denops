@@ -1,8 +1,9 @@
+-- :h lsp-quickstart
 local home_dir = os.getenv("HOME")
 
 vim.lsp.config['luals'] = {
 	-- Command and arguments to start the server.
-	cmd = { home_dir .. "/.local/share/mise/installs/lua-language-server/3.15.0/bin/lua-language-server" },
+	cmd = { home_dir .. "/.local/share/mise/installs/lua-language-server/latest/bin/lua-language-server" },
 	-- Filetypes to automatically attach to.
 	filetypes = { 'lua' },
 	-- Sets the "workspace" to the directory where any of these files is found.
@@ -19,6 +20,5 @@ vim.lsp.config['luals'] = {
 		}
 	}
 }
-vim.lsp.enable('luals')
 
--- 自動補完入れなくてよさそう -> :h lsp-attach
+vim.lsp.enable('luals')
