@@ -40,19 +40,18 @@ repo = 'jacoborus/tender.vim'
 [[plugins]] #fuzzy finder
 repo = 'nvim-telescope/telescope.nvim'
 lua_add = '''
-    config = function()
-      require('telescope').setup({
-				defaults = {
-						sorting_strategy = "ascending",
-						winblend = 4,
-						file_ignore_patterns = {
-							"^.git/",
-							"^node_modules/",
-						}
-				}
-		})
-		end,
+    require('telescope').setup({
+        defaults = {
+	    sorting_strategy = "ascending",
+	    winblend = 4,
+	    file_ignore_patterns = {
+	        "^.git/",
+                "^node_modules/",
+	    }
+        }
+    })
 '''
+
 [[plugins]] # telescope depends
 repo = 'nvim-lua/plenary.nvim'
 
