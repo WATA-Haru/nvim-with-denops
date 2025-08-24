@@ -76,8 +76,8 @@ vim.cmd("syntax on")
 vim.cmd("set nu")
 
 -- treesitter parser directory
-local parser_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
-vim.opt.runtimepath:append(parser_dir)
+-- local parser_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
+-- vim.opt.runtimepath:append(parser_dir)
 
 -- install
 vim.api.nvim_create_user_command("DppInstall", "call dpp#async_ext_action('installer', 'install')", {})
@@ -148,6 +148,8 @@ require("lsp/vtsls")
 
 -- telescope
 map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
+-- or map('n', 'gd', '<cmd>lua vim.lsp.buf.definition() <CR>', opts)
+map('n', 'gb', '<C-t>', opts)
 map('n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', opts)
 
 -- fuzzy-finder
