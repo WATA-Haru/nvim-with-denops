@@ -1,7 +1,18 @@
 [[plugins]] #filer
 repo = 'stevearc/oil.nvim'
 lua_add = '''
-    require("oil").setup()
+    require("oil").setup({
+    	view_options = {
+    		show_hidden = true,
+    		is_hidden_file = function(name, bufnr)
+    			local m = name:match("^%.")
+    			return m ~= nil
+    		end,
+    		is_always_hidden = function(name, bufnr)
+    			return false
+    		end,
+    	},
+    })
     -- Ex, Ve, Seコマンドを定義
     vim.api.nvim_create_user_command("Ex", function(opts)
       local path = opts.args
@@ -79,3 +90,28 @@ lua_add = '''
   	indent = { enable = true },
   }
 '''
+[[plugins]] #code-completion
+repo = 'Shougo/ddc.vim'
+hook_source = 'source ~/.config/nvim-with-denops/plugins/ddc/config.d/ddc.vim'
+# ddc の補完を表示させるやつ
+[[plugins]]
+repo = 'Shougo/ddc-ui-native'
+# バッファー内の情報を補完
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
+# ヘッダーのマッチを
+[[plugins]]
+repo = 'Shougo/ddc-filter-matcher_head'
+# 補完を現在の入力に応じて変化させる
+[[plugins]]
+repo = 'Shougo/ddc-filter-sorter_rank'
+# ファイルの補完
+[[plugins]]
+repo = 'LumaKernel/ddc-source-file'
+# denops.vim (ddc の依存関係)
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+[[plugins]]
+repo = 'Shougo/ddc-source-lsp'
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
