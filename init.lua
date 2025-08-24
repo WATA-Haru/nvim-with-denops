@@ -7,9 +7,9 @@ vim.opt.runtimepath:prepend(dppSrc)
 
 -- check repository exists.
 local function ensure_repo_exists(repo_url, dest_path)
-	if not vim.loop.fs_stat(dest_path) then
-		vim.fn.system({ "git", "clone", "https://github.com/" .. repo_url, dest_path })
-	end
+    if not vim.loop.fs_stat(dest_path) then
+        vim.fn.system({ "git", "clone", "https://github.com/" .. repo_url, dest_path })
+    end
 end
 
 ensure_repo_exists("vim-denops/denops.vim.git", denopsSrc)
@@ -23,57 +23,77 @@ local dppConfig = "$HOME/.config/nvim-with-denops/dpp.ts"
 
 -- option.
 local extension_urls = {
-	"Shougo/dpp-ext-installer.git",
-	"Shougo/dpp-ext-toml.git",
-	"Shougo/dpp-protocol-git.git",
-	"Shougo/dpp-ext-lazy.git",
-	"Shougo/dpp-ext-local.git",
+    "Shougo/dpp-ext-installer.git",
+    "Shougo/dpp-ext-toml.git",
+    "Shougo/dpp-protocol-git.git",
+    "Shougo/dpp-ext-lazy.git",
+    "Shougo/dpp-ext-local.git",
 }
 
 -- Ensure each extension is installed and add to runtimepath
 for _, url in ipairs(extension_urls) do
-	local ext_path = cache_path .. "/" .. string.gsub(url, ".git", "")
-	ensure_repo_exists(url, ext_path)
-	vim.opt.runtimepath:append(ext_path)
+    local ext_path = cache_path .. "/" .. string.gsub(url, ".git", "")
+    ensure_repo_exists(url, ext_path)
+    vim.opt.runtimepath:append(ext_path)
 end
 
 -- vim.g.denops_server_addr = "127.0.0.1:41979"
 -- vim.g["denops#debug"] = 1
 
 if dpp.load_state(dppBase) then
-	vim.opt.runtimepath:prepend(denopsSrc)
-	vim.api.nvim_create_augroup("ddp", {})
+    vim.opt.runtimepath:prepend(denopsSrc)
+    vim.api.nvim_create_augroup("ddp", {})
 
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "DenopsReady",
-		callback = function()
-			dpp.make_state(dppBase, dppConfig)
-		end,
-	})
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "DenopsReady",
+        callback = function()
+            dpp.make_state(dppBase, dppConfig)
+        end,
+    })
 end
 
 vim.api.nvim_create_autocmd("User", {
-	pattern = "Dpp:makeStatePost",
-	callback = function()
-		vim.notify("dpp make_state() is done")
-	end,
+    pattern = "Dpp:makeStatePost",
+    callback = function()
+        vim.notify("dpp make_state() is done")
+    end,
 })
 
 --  多分これ追加したら動くようになった
 if vim.fn["dpp#min#load_state"](dppBase) then
-	vim.opt.runtimepath:prepend(denopsSrc)
+    vim.opt.runtimepath:prepend(denopsSrc)
 
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "DenopsReady",
-		callback = function()
-			dpp.make_state(dppBase, dppConfig)
-		end,
-	})
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "DenopsReady",
+        callback = function()
+            dpp.make_state(dppBase, dppConfig)
+        end,
+    })
 end
 
-vim.cmd("filetype indent plugin on")
-vim.cmd("syntax on")
-vim.cmd("set nu")
+vim.opt.termguicolors = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.syntax = on
+vim.opt.number = true
+vim.opt.encoding = "utf-8"
+vim.opt.mouse = 'a'
+vim.opt.title = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.list = true
+vim.opt.listchars = {
+    tab='-»',
+    -- eol='↲',
+    space = '·'
+    --trail='-',
+    --extends='»', 
+    --precedes='«', 
+    --nbsp='%',
+}
+vim.opt.expandtab = true
+vim.opt.clipboard = "unnamedplus"
 
 -- treesitter parser directory
 -- local parser_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
@@ -84,8 +104,8 @@ vim.api.nvim_create_user_command("DppInstall", "call dpp#async_ext_action('insta
 
 -- update
 vim.api.nvim_create_user_command("DppUpdate", function(opts)
-	local args = opts.fargs
-	vim.fn["dpp#async_ext_action"]("installer", "update", { names = args })
+    local args = opts.fargs
+    vim.fn["dpp#async_ext_action"]("installer", "update", { names = args })
 end, { nargs = "*" })
 
 
@@ -124,18 +144,18 @@ vim.opt.clipboard = 'unnamedplus' --クリップボードとレジスタを共�
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
-	vim.g.clipboard = {
-		name = "myClipboard",
-		copy = {
-			["+"] = "win32yank.exe -i",
-			["*"] = "win32yank.exe -i",
-		},
-		paste = {
-			["+"] = "win32yank.exe -o",
-			["*"] = "win32yank.exe -o",
-		},
-		cache_enabled = 1,
-	}
+    vim.g.clipboard = {
+        name = "myClipboard",
+        copy = {
+            ["+"] = "win32yank.exe -i",
+            ["*"] = "win32yank.exe -i",
+        },
+        paste = {
+            ["+"] = "win32yank.exe -o",
+            ["*"] = "win32yank.exe -o",
+        },
+        cache_enabled = 1,
+    }
 end
 
 local map = vim.api.nvim_set_keymap
