@@ -75,6 +75,10 @@ vim.cmd("filetype indent plugin on")
 vim.cmd("syntax on")
 vim.cmd("set nu")
 
+-- treesitter parser directory
+local parser_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
+vim.opt.runtimepath:append(parser_dir)
+
 -- install
 vim.api.nvim_create_user_command("DppInstall", "call dpp#async_ext_action('installer', 'install')", {})
 
@@ -138,6 +142,7 @@ local map = vim.api.nvim_set_keymap
 local opts = {noremap = true, silent = true}
 
 -- lsp
+require("lsp/lsp")
 require("lsp/lua_ls")
 require("lsp/vtsls")
 

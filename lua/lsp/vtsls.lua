@@ -21,8 +21,10 @@ local vtsls_config = {
   -- https://minerva.mamansoft.net/Notes/%F0%9F%93%9C2025-07-07+Neovim+nvim-lspconfig%E3%81%A7Vue+Language+Tools+%E3%82%92+v2+%E3%81%8B%E3%82%89+v3+%E3%81%AB%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B
   -- workspace_required = true, -- root_markersがある場合のみlsp起動
   -- root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
-  cmd = { "node", vtsls_path, "--stdio" },
-  -- cmd = { "node", vtsls_path },
+  --
+  cmd = { "deno", "run", "--allow-all", "--unstable-detect-cjs", vtsls_path, "--stdio" },
+  --  or
+  -- cmd = { "node", vtsls_path, "--stdio" },
   settings = {
     vtsls = {
       tsserver = {
@@ -35,14 +37,14 @@ local vtsls_config = {
   filetypes = tsserver_filetypes,
 }
 
-local ts_ls_config = {
-  init_options = {
-    plugins = {
-      vue_plugin,
-    },
-  },
-  filetypes = tsserver_filetypes,
-}
+--local ts_ls_config = {
+--  init_options = {
+--    plugins = {
+--      vue_plugin,
+--    },
+--  },
+--  filetypes = tsserver_filetypes,
+--}
 
 -- Simple vue_ls config for testing
 local vue_ls_config = {

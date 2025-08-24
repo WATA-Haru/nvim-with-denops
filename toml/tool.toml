@@ -61,3 +61,21 @@ repo = 'lambdalisue/vim-gin'
 [[plugins]] # zen-mode
 repo = "folke/zen-mode.nvim"
 
+[[plugins]] # treesitter
+repo = "nvim-treesitter/nvim-treesitter"
+# 遅延読み込み - ファイルを開いた時にのみ読み込む
+on_event = ["BufNewFile", "BufRead"]
+# アップデート時にTSUpdateを実行
+hook_post_update = '''
+  vim.cmd("TSUpdate")
+'''
+lua_add = '''
+  require'nvim-treesitter.configs'.setup {
+  	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "vue", "typescript","html","css", "rust", "javascript"},
+  	--ensure_installed = "all",
+  	sync_install = false,
+  	auto_install = true,
+  	highlight = { enable = true },
+  	indent = { enable = true },
+  }
+'''
