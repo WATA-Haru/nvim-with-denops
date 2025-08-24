@@ -2,23 +2,35 @@
 "
 call ddc#custom#patch_global('ui', 'native')
 
-" file を補完候補に追加する
-call ddc#custom#patch_global('sources', ['around', 'file'])
+" ddc-source-lsp supports native-lsp!
+" https://github.com/Shougo/ddc-source-lsp/blob/main/doc/ddc-source-lsp.txt
+call ddc#custom#patch_global('sources', ['around', 'file', 'lsp'])
 
 " 前の設定だとどっちがaround かfile かわからないのでmark を設定
-call ddc#custom#patch_global('sourceOptions', {
-      \ '_': {
-      \   'matchers': ['matcher_head'],
-      \   'sorters': ['sorter_rank']
-      \ },
-      \ 'around': {
-      \   'mark': 'A'
-      \ },
-      \ 'file': {
-      \   'mark': 'F',
-      \   'isVolatile': v:true,
-      \   'forceCompletionPattern': '\S/\S*',
-      \ }})
+call ddc#custom#patch_global('sourceOptions', #{
+    \ _: #{
+    \   matchers: ['matcher_fuzzy'],
+    \   sorters: ['sorter_fuzzy'],
+    \   converters: ['converter_fuzzy'],
+    \   minAutoCompleteLength: 1,
+    \ },
+    \ around: #{
+    \   mark: 'A'
+    \ },
+    \ file: #{
+    \   mark: 'F',
+    \   isVolatile: v:true,
+    \   forceCompletionPattern: '\S/\S*',
+    \ },
+    \ lsp: #{
+    \   isVolatile: v:true,
+    \   mark: 'lsp',
+    \   forceCompletionPattern: '\.\w*|:\w*|->\w*',
+    \   sorters: ['sorter_lsp-kind'],
+    \   maxItems: 15,
+    \ },
+    \})
+
 call ddc#custom#patch_filetype(
     \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
     \ 'sourceOptions': {
@@ -32,18 +44,14 @@ call ddc#custom#patch_filetype(
     \   },
     \ }})
 
-" ddc-source-lsp supports native-lsp!
-" https://github.com/Shougo/ddc-source-lsp/blob/main/doc/ddc-source-lsp.txt
-call ddc#custom#patch_global('sources', ['lsp'])
-
-call ddc#custom#patch_global('sourceOptions', #{
-      \   lsp: #{
-      \     isVolatile: v:true,
-      \     mark: 'lsp',
-      \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
-      \     sorters: ['sorter_lsp-kind'],
-      \   },
-      \ })
+" call ddc#custom#patch_global('sourceOptions', #{
+"       \   lsp: #{
+"       \     isVolatile: v:true,
+"       \     mark: 'lsp',
+"       \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
+"       \     sorters: ['sorter_lsp-kind'],
+"       \   },
+"       \ })
 
 " Register snippet engine (vim-vsnip)
 call ddc#custom#patch_global('sourceParams', #{
@@ -53,16 +61,6 @@ call ddc#custom#patch_global('sourceParams', #{
       \     }),
       \   }
       \ })
-
-" fuzzy
-call ddc#custom#patch_global('sourceOptions', {
-  \   '_': {
-  \     'matchers': ['matcher_fuzzy'],
-  \     'sorters': ['sorter_fuzzy'],
-  \     'converters': ['converter_fuzzy']
-  \   }
-  \ })
-
 
 call ddc#enable()
 
