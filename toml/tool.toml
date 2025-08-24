@@ -2,16 +2,20 @@
 repo = 'stevearc/oil.nvim'
 lua_add = '''
     require("oil").setup({
-    	view_options = {
-    		show_hidden = true,
-    		is_hidden_file = function(name, bufnr)
-    			local m = name:match("^%.")
-    			return m ~= nil
-    		end,
-    		is_always_hidden = function(name, bufnr)
-    			return false
-    		end,
-    	},
+      view_options = {
+        show_hidden = true,
+        is_hidden_file = function(name, bufnr)
+          local m = name:match("^%.")
+          return m ~= nil
+        end,
+        is_always_hidden = function(name, bufnr)
+          return false
+        end,
+      },
+      lsp_file_methods = {
+        -- https://github.com/stevearc/oil.nvim/blob/07f80ad645895af849a597d1cac897059d89b686/README.md?plain=1#L182
+        autosave_changes = true,
+      }
     })
     -- Ex, Ve, Seコマンドを定義
     vim.api.nvim_create_user_command("Ex", function(opts)
@@ -53,12 +57,12 @@ repo = 'nvim-telescope/telescope.nvim'
 lua_add = '''
     require('telescope').setup({
         defaults = {
-	    sorting_strategy = "ascending",
-	    winblend = 4,
-	    file_ignore_patterns = {
-	        "^.git/",
-                "^node_modules/",
-	    }
+      sorting_strategy = "ascending",
+      winblend = 4,
+      file_ignore_patterns = {
+        "^.git/",
+        "^node_modules/",
+      }
         }
     })
 '''
@@ -82,12 +86,12 @@ hook_post_update = '''
 '''
 lua_add = '''
   require'nvim-treesitter.configs'.setup {
-  	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "vue", "typescript","html","css", "rust", "javascript"},
-  	--ensure_installed = "all",
-  	sync_install = false,
-  	auto_install = true,
-  	highlight = { enable = true },
-  	indent = { enable = true },
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "vue", "typescript","html","css", "rust", "javascript"},
+    --ensure_installed = "all",
+    sync_install = false,
+    auto_install = true,
+    highlight = { enable = true },
+    indent = { enable = true },
   }
 '''
 [[plugins]] #code-completion
