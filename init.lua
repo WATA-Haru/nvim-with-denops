@@ -172,6 +172,8 @@ map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts
 -- or map('n', 'gd', '<cmd>lua vim.lsp.buf.definition() <CR>', opts)
 map('n', 'gb', '<C-t>', opts)
 map('n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', opts)
+map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+map('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 -- fuzzy-finder
 map('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files()<CR>', { desc = 'Telescope find files' })
