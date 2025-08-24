@@ -145,6 +145,7 @@ local opts = {noremap = true, silent = true}
 require("lsp/lsp")
 require("lsp/lua_ls")
 require("lsp/vtsls")
+require("lsp/marksman")
 
 -- telescope
 map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
