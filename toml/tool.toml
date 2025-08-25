@@ -14,10 +14,8 @@ lua_add = '''
       },
       lsp_file_methods = {
         -- https://github.com/stevearc/oil.nvim/blob/07f80ad645895af849a597d1cac897059d89b686/README.md?plain=1#L182
-        enabled = true,
-        timeout_ms = 1000,
         autosave_changes = true,
-      },
+      }
     })
     -- Ex, Ve, Seコマンドを定義
     vim.api.nvim_create_user_command("Ex", function(opts)
