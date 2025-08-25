@@ -73,26 +73,26 @@ export class Config extends BaseConfig {
         //    tomls.push(toml);
         //}
 
-        //const lazyToml = (await args.dpp.extAction(
-        //    args.denops,
-        //    context,
-        //    options,
-        //    "toml",
-        //    "load",
-        //    {
-        //        path: await fn.expand(
-        //            args.denops,
-        //            dotfilesDir + "/dein_lazy.toml"
-        //        ),
-        //        //path: `${dotfilesDir}/dein_lazy.toml`,
-        //        options: {
-        //            lazy: true,
-        //        },
-        //    }
-        //)) as Toml | undefined;
-        //if (lazyToml) {
-        //    tomls.push(lazyToml);
-        //}
+        const lazyToml = (await args.dpp.extAction(
+            args.denops,
+            context,
+            options,
+            "toml",
+            "load",
+            {
+                path: await fn.expand(
+                    args.denops,
+                    dotfilesDir + "/tool_lazy.toml"
+                ),
+                //path: `${dotfilesDir}/dein_lazy.toml`,
+                options: {
+                    lazy: true,
+                },
+            }
+        )) as Toml | undefined;
+        if (lazyToml) {
+            tomls.push(lazyToml);
+        }
 
         const recordPlugins: Record<string, Plugin> = {};
         const ftplugins: Record<string, string> = {};

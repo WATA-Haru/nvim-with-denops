@@ -1,3 +1,6 @@
+[[plugins]]
+repo = 'Shougo/dpp-ext-lazy'
+
 [[plugins]] #filer
 repo = 'stevearc/oil.nvim'
 lua_add = '''
@@ -100,6 +103,7 @@ lua_add = '''
 [[plugins]] #code-completion
 repo = 'Shougo/ddc.vim'
 hook_source = 'source ~/.config/nvim-with-denops/plugins/ddc/config.d/ddc.vim'
+
 # ddc の補完を表示させるやつ
 [[plugins]]
 repo = 'Shougo/ddc-ui-native'
@@ -122,4 +126,23 @@ repo = 'vim-denops/denops.vim'
 repo = 'Shougo/ddc-source-lsp'
 [[plugins]]
 repo = 'tani/ddc-fuzzy'
+
+[[plugins]] #snacks for file rename
+repo = 'folke/snacks.nvim'
+lua_add = '''
+  require("snacks").setup({
+    bigfile = { enabled = true },
+    dashboard = { enabled = false },
+    explorer = { enabled = true },
+    indent = { enabled = true },
+    input = { enabled = true },
+    picker = { enabled = true },
+    notifier = { enabled = false },
+    quickfile = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = false },
+    statuscolumn = { enabled = false },
+    words = { enabled = true },
+  })
+'''
 
