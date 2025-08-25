@@ -15,19 +15,21 @@ call ddc#custom#patch_global('sourceOptions', #{
     \   minAutoCompleteLength: 1,
     \ },
     \ around: #{
-    \   mark: 'A'
+    \   mark: 'A',
+    \   maxItems: 5,
     \ },
     \ file: #{
     \   mark: 'F',
     \   isVolatile: v:true,
     \   forceCompletionPattern: '\S/\S*',
+    \   maxItems: 5,
     \ },
     \ lsp: #{
     \   isVolatile: v:true,
     \   mark: 'lsp',
     \   forceCompletionPattern: '\.\w*|:\w*|->\w*',
     \   sorters: ['sorter_lsp-kind'],
-    \   maxItems: 15,
+    \   maxItems: 10,
     \ },
     \})
 
