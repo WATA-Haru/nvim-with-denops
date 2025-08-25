@@ -161,12 +161,6 @@ end
 local map = vim.api.nvim_set_keymap
 local opts = {noremap = true, silent = true}
 
--- lsp
-require("lsp/lsp")
-require("lsp/lua_ls")
-require("lsp/vtsls")
-require("lsp/marksman")
-
 -- telescope
 map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
 -- or map('n', 'gd', '<cmd>lua vim.lsp.buf.definition() <CR>', opts)
@@ -180,4 +174,11 @@ map('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files()<CR>', {
 map('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', { desc = 'Telescope live grep' })
 map('n', '<leader>fb', '<cmd>lua require"telescope.builtin".buffers()<CR>', { desc = 'Telescope buffers' })
 map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { desc = 'Telescope help tags' })
+
+-- https://gpanders.com/blog/whats-new-in-neovim-0-11/
+vim.diagnostic.config({ virtual_text = true })
+
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('marksman')
+vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
 

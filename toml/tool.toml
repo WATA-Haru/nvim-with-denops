@@ -70,6 +70,9 @@ lua_add = '''
 [[plugins]] # telescope depends
 repo = 'nvim-lua/plenary.nvim'
 
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+
 [[plugins]] # git
 repo = 'lambdalisue/vim-gin'
 
@@ -119,3 +122,4 @@ repo = 'vim-denops/denops.vim'
 repo = 'Shougo/ddc-source-lsp'
 [[plugins]]
 repo = 'tani/ddc-fuzzy'
+
