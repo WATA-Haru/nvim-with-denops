@@ -92,7 +92,7 @@ hook_post_update = '''
 '''
 lua_add = '''
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "vue", "typescript","html","css", "rust", "javascript"},
+    ensure_installed = { "c", "lua", "python", "vim", "vimdoc", "query", "markdown", "markdown_inline", "vue", "typescript","html","css", "rust", "javascript"},
     --ensure_installed = "all",
     sync_install = false,
     auto_install = true,
@@ -129,7 +129,7 @@ repo = 'tani/ddc-fuzzy'
 
 [[plugins]] #snacks for file rename
 repo = 'folke/snacks.nvim'
-lua_add = '''
+lua_source = '''
   require("snacks").setup({
     bigfile = { enabled = true },
     dashboard = { enabled = false },

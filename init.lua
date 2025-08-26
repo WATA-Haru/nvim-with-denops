@@ -181,6 +181,7 @@ vim.diagnostic.config({ virtual_text = true })
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('marksman')
 vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
+vim.lsp.enable('pyright')
 
 -- auto path rename
 vim.api.nvim_create_autocmd("User", {
