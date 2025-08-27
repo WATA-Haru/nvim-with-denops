@@ -55,9 +55,13 @@ repo = 'nvim-tree/nvim-web-devicons'
 [[plugins]] #colorscheme
 repo = 'jacoborus/tender.vim'
 
+
+[[plugins]] # telescope depends
+repo = 'nvim-lua/plenary.nvim'
+
 [[plugins]] #fuzzy finder
 repo = 'nvim-telescope/telescope.nvim'
-lua_add = '''
+lua_source = '''
     require('telescope').setup({
         defaults = {
       sorting_strategy = "ascending",
@@ -70,9 +74,6 @@ lua_add = '''
     })
 '''
 
-[[plugins]] # telescope depends
-repo = 'nvim-lua/plenary.nvim'
-
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 
@@ -82,24 +83,6 @@ repo = 'lambdalisue/vim-gin'
 [[plugins]] # zen-mode
 repo = "folke/zen-mode.nvim"
 
-[[plugins]] # treesitter
-repo = "nvim-treesitter/nvim-treesitter"
-# 遅延読み込み - ファイルを開いた時にのみ読み込む
-on_event = ["BufNewFile", "BufRead"]
-# アップデート時にTSUpdateを実行
-hook_post_update = '''
-  vim.cmd("TSUpdate")
-'''
-lua_add = '''
-  require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "lua", "python", "vim", "vimdoc", "query", "markdown", "markdown_inline", "vue", "typescript","html","css", "rust", "javascript"},
-    --ensure_installed = "all",
-    sync_install = false,
-    auto_install = true,
-    highlight = { enable = true },
-    indent = { enable = true },
-  }
-'''
 [[plugins]] #code-completion
 repo = 'Shougo/ddc.vim'
 hook_source = 'source ~/.config/nvim-with-denops/plugins/ddc/config.d/ddc.vim'
