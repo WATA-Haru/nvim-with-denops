@@ -4,6 +4,8 @@ local lua_ls_path = home_dir .. "/.local/share/mise/installs/lua-language-server
 
 vim.lsp.config('lua_ls', {
   cmd = { lua_ls_path },
+  filetypes = { 'lua' }, -- Explicitly specify lua files only
+  root_markers = { '.luarc.json', '.luarc.jsonc', '.lua-format', '.stylua.toml' }, -- Be more specific about root markers
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name

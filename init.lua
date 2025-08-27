@@ -25,10 +25,6 @@ vim.opt.listchars = {
 vim.opt.expandtab = true
 vim.opt.clipboard = "unnamedplus"
 
--- treesitter parser directory
--- local parser_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
--- vim.opt.runtimepath:append(parser_dir)
-
 -- update leader key to space
 vim.g.mapleader = " "
 vim.cmd("filetype plugin indent on")
@@ -86,13 +82,24 @@ map('n', '<leader>fb', '<cmd>lua require"telescope.builtin".buffers()<CR>', { de
 map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { desc = 'Telescope help tags' })
 
 -- lsp settings
+-- -- treesitter parser directory
+local parser_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
+vim.opt.runtimepath:append(parser_dir)
+
 -- https://gpanders.com/blog/whats-new-in-neovim-0-11/
--- TODO
--- vim.diagnostic.config({ virtual_text = true })
--- vim.lsp.enable('lua_ls')
--- vim.lsp.enable('marksman')
--- vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
--- vim.lsp.enable('pyright')
+vim.diagnostic.config({ virtual_text = true })
+
+-- Load LSP configurations
+require("lsp.lua_ls")
+require("lsp.marksman")
+require("lsp.vtsls")
+require("lsp.pyright")
+
+-- Enable LSP servers
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('marksman')
+vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
+vim.lsp.enable('pyright')
 
 -- -- for snacks
 -- auto path rename
@@ -107,3 +114,10 @@ map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { 
 --
 
 require('plugins.tender')
+require('plugins.oil')
+require('plugins.telescope')
+require('plugins.treesitter')
+require('plugins.gin')
+require('plugins.zen-mode')
+require('plugins.snacks')
+
