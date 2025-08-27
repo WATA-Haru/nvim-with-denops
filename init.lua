@@ -101,18 +101,6 @@ vim.lsp.enable('marksman')
 vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
 vim.lsp.enable('pyright')
 
--- -- for snacks
--- auto path rename
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "OilActionsPost",
---   callback = function(event)
---       if event.data.actions.type == "move" then
---           Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
---       end
---   end,
--- })
---
-
 require('plugins.tender')
 require('plugins.oil')
 require('plugins.telescope')
@@ -120,4 +108,4 @@ require('plugins.treesitter')
 require('plugins.gin')
 require('plugins.zen-mode')
 require('plugins.snacks')
-
+require('plugins.ddc')
