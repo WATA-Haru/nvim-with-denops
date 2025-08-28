@@ -4,5 +4,3 @@ vim.pack.add({
     version = 'master'
   }
 })
-
-vim.cmd[[ colorscheme tender ]]

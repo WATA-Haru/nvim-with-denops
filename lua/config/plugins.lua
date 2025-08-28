@@ -1,5 +1,6 @@
 -- used plugin list
 require('plugins.tender') -- colorscheme
+require('plugins.lackluster') -- minimal colorscheme
 require('plugins.treesitter') -- syntax highlighting
 require('plugins.oil') -- filer
 require('plugins.nvim-lspconfig') -- lsp settings
