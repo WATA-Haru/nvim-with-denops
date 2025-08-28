@@ -81,20 +81,12 @@ map('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', { 
 map('n', '<leader>fb', '<cmd>lua require"telescope.builtin".buffers()<CR>', { desc = 'Telescope buffers' })
 map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { desc = 'Telescope help tags' })
 
--- lsp settings
 -- -- treesitter parser directory
 local parser_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
 vim.opt.runtimepath:append(parser_dir)
 
 -- https://gpanders.com/blog/whats-new-in-neovim-0-11/
-vim.diagnostic.config({ virtual_text = true })
-
--- Load LSP configurations
-require("lsp.lua_ls")
-require("lsp.marksman")
-require("lsp.vtsls")
-require("lsp.pyright")
-
+-- vim.diagnostic.config({ virtual_text = true })
 -- Enable LSP servers
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('marksman')
@@ -103,8 +95,9 @@ vim.lsp.enable('pyright')
 
 require('plugins.tender')
 require('plugins.oil')
-require('plugins.telescope')
+require('plugins.nvim-lspconfig')
 require('plugins.treesitter')
+require('plugins.telescope')
 require('plugins.gin')
 require('plugins.zen-mode')
 require('plugins.snacks')

@@ -1,55 +1,34 @@
 vim.pack.add({
   {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter",
-    version = "master",
-  },
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+    version = 'master'
+  }
 })
 
--- Safe treesitter setup with error handling
-local ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
-if not ok then
-  vim.notify("nvim-treesitter not available, skipping setup", vim.log.levels.WARN)
-  return
-end
-
-treesitter_configs.setup({
-  -- Start with basic parsers only
-  ensure_installed = {},
-  auto_install = false,
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "lua", "python", "vim", "vimdoc", "query", "markdown", "markdown_inline", "vue", "typescript","html","css", "rust", "javascript"},
+  sync_install = false,
+  auto_install = true,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-  indent = {
-    enable = true,
-  },
-})
+  indent = { enable = true },
+}
 
--- Install parsers manually if needed
-vim.defer_fn(function()
-  local parsers_to_install = {'lua', 'markdown'}
-  for _, parser in ipairs(parsers_to_install) do
-    -- Use the new API for Neovim 0.12+
-    local ok = pcall(vim.treesitter.language.add, parser)
-    if not ok then
-      vim.cmd('TSInstall ' .. parser)
+vim.api.nvim_create_autocmd('PackChanged', {
+  desc = 'Handle nvim-treesitter updates',
+  group = vim.api.nvim_create_augroup('nvim-treesitter-pack-changed-update-handler', { clear = true }),
+  callback = function(event)
+    if event.data.kind == 'update' and event.data.spec.name == 'nvim-treesitter' then
+      vim.notify('nvim-treesitter updated, running TSUpdate...', vim.log.levels.INFO)
+      ---@diagnostic disable-next-line: param-type-mismatch
+      local ok = pcall(vim.cmd, 'TSUpdate')
+      if ok then
+        vim.notify('TSUpdate completed successfully!', vim.log.levels.INFO)
+      else
+        vim.notify('TSUpdate command not available yet, skipping', vim.log.levels.WARN)
+      end
     end
-  end
-end, 100)
-
--- vim.api.nvim_create_autocmd('PackChanged', {
---   desc = 'Handle nvim-treesitter updates',
---   group = vim.api.nvim_create_augroup('nvim-treesitter-pack-changed-update-handler', { clear = true }),
---   callback = function(event)
---     if event.data.kind == 'update' and event.data.spec.name == 'nvim-treesitter' then
---       vim.notify('nvim-treesitter updated, running TSUpdate...', vim.log.levels.INFO)
---       ---@diagnostic disable-next-line: param-type-mismatch
---       local ok = pcall(vim.cmd, 'TSUpdate')
---       if ok then
---         vim.notify('TSUpdate completed successfully!', vim.log.levels.INFO)
---       else
---         vim.notify('TSUpdate command not available yet, skipping', vim.log.levels.WARN)
---       end
---     end
---   end,
--- })
+  end,
+})
