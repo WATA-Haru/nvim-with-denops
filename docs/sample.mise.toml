@@ -1,0 +1,6 @@
+[tools]
+lua-language-server = "latest"
+marksman = "latest"
+"npm:@vtsls/language-server" = "latest"
+"npm:@vue/language-server" = "latest"
+"npm:pyright" = "latest"
