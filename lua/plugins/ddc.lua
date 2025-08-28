@@ -46,7 +46,7 @@ vim.pack.add({
 })
 
 -- Load DDC configuration from VimScript file
-local ddc_config_path = vim.fn.stdpath("config") .. "/vimscriptForPlugins/ddc.vim"
+local ddc_config_path = vim.fn.stdpath("config") .. "/vimscript_for_plugins/ddc.vim"
 if vim.fn.filereadable(ddc_config_path) == 1 then
   vim.cmd("source " .. ddc_config_path)
 else
