@@ -8,3 +8,4 @@ require('plugins.gin') -- git plugin
 require('plugins.zen-mode') -- focus mode
 require('plugins.snacks') -- useful tools (to rename file automatically when Oil changes file path)
 require('plugins.ddc') -- code completation
+require('plugins.neoscroll') -- scroll plugin
