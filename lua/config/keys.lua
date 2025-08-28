@@ -1,0 +1,35 @@
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- leader key is Space
+vim.g.mapleader = ' '
+
+-- map('n', '<leader>f', '1z=', opts)
+-- map('n', '<leader>s', ':set spell!<CR>', opts)
+-- window resize
+map('n', '<leader><', '5<c-w><', opts)
+map('n', '<leader>>', '5<c-w>>', opts)
+
+-- ESC to jk
+map('i', 'jk', '<ESC>', opts)
+
+map('n', '<Leader>/', '/\\C', opts)
+map('n', '<Leader>?', '?\\C', opts)
+
+map('n', '<Leader>n', '/<Up>\\C<CR>', opts)
+map('n', '<Leader>N', '?<Up>\\C<CR>', opts)
+
+-- telescope
+map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
+-- or map('n', 'gd', '<cmd>lua vim.lsp.buf.definition() <CR>', opts)
+map('n', 'gb', '<C-t>', opts)
+map('n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', opts)
+map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+map('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+-- fuzzy-finder
+map('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files()<CR>', { desc = 'Telescope find files' })
+map('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', { desc = 'Telescope live grep' })
+map('n', '<leader>fb', '<cmd>lua require"telescope.builtin".buffers()<CR>', { desc = 'Telescope buffers' })
+map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { desc = 'Telescope help tags' })
+
