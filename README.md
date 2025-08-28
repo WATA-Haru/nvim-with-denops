@@ -23,6 +23,7 @@ nvim-with-denops/
 │   │   ├── lsp.lua            # LSPグローバル設定
 │   │   ├── opts.lua           # Neovimオプション
 │   │   └── plugins.lua        # プラグイン読み込み制御
+│   │   └── colorscheme.lua    # colorschemeと切り替え設定
 │   └── plugins/               # プラグイン設定
 └── vimscript_for_plugins/     # VimScript設定
 ```
@@ -37,6 +38,7 @@ nvim-with-denops/
 ### lua/config/ファイル詳細
 
 - **`clipboard.lua`**: WSL win32yankクリップボード統合
+- **`colorscheme.lua`**: カラースキーム設定とToggleColコマンド
 - **`keys.lua`**: キーマッピングとショートカット
 - **`lsp.lua`**: LSPグローバル設定と診断
 - **`opts.lua`**: Neovimオプション（UI、動作など）
@@ -52,6 +54,26 @@ nvim-with-denops/
 **参考**:
 - ドキュメント: https://neovim.io/doc/user/pack.html#vim.pack.update()
 - 動画: https://youtu.be/UE6XQTAxwE0?si=aVc1tpYEP0Wmy2NX
+
+## 補足: パッケージの追加手順
+
+新しいプラグインを追加する場合の手順：
+
+1. **プラグイン設定ファイルを作成**
+   ```
+   lua/plugins/<plugin-name>.lua
+   ```
+
+2. **プラグイン読み込みファイルに追加**
+   `lua/config/plugins.lua`でrequire()の形式で呼び出す：
+   ```lua
+   require('plugins.<plugin-name>')
+   ```
+
+3. **Neovim再起動**
+   設定を再読み込みしてパッケージが自動インストール・読み込まれる
+
+**注意**: プラグインの依存関係がある場合は、`lua/plugins/<plugin-name>.lua`内で依存プラグインを先に`vim.pack.add()`で読み込んでください。
 
 ## LSPサーバー（mise管理 + nvim-lspconfig）
 LSPサーバーは**mise**（masonではなく）経由で管理しています。以下のツールをインストールしてパスを設定してください：

@@ -21,6 +21,7 @@ nvim-with-denops/
 │   │   ├── lsp.lua            # LSP global settings
 │   │   ├── opts.lua           # Neovim options
 │   │   └── plugins.lua        # Plugin loading orchestration
+│   │   └── colorscheme.lua    # coloscheme setting and toggle color
 │   └── plugins/               # Plugin configurations
 └── vimscript_for_plugins/     # VimScript configurations
 ```
@@ -35,6 +36,7 @@ nvim-with-denops/
 ### lua/config/ Files
 
 - **`clipboard.lua`**: WSL clipboard integration with win32yank
+- **`colorscheme.lua`**: Colorscheme settings and ToggleCol command
 - **`keys.lua`**: Key mappings and shortcuts
 - **`lsp.lua`**: Global LSP settings and diagnostics
 - **`opts.lua`**: Neovim options (UI, behavior, etc.)
@@ -51,6 +53,26 @@ This configuration uses Neovim's native `vim.pack.add()` system:
 **References**:
 - Documentation: https://neovim.io/doc/user/pack.html#vim.pack.update()
 - Video: https://youtu.be/UE6XQTAxwE0?si=aVc1tpYEP0Wmy2NX
+
+## Appendix: Package Addition Steps
+
+Steps to add a new plugin:
+
+1. **Create plugin configuration file**
+   ```
+   lua/plugins/<plugin-name>.lua
+   ```
+
+2. **Add to plugin loader**
+   Add require() call in `lua/config/plugins.lua`:
+   ```lua
+   require('plugins.<plugin-name>')
+   ```
+
+3. **Restart Neovim**
+   Reload configuration to automatically install and load the package
+
+**Note**: If the plugin has dependencies, load dependency plugins first using `vim.pack.add()` in `lua/plugins/<plugin-name>.lua`.
 
 ### LSP Servers (mise-managed + nvim-lspconfig)
 LSP servers are managed via **mise** (not mason). Ensure the following tools are installed and paths are configured:
