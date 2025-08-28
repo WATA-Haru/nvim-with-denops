@@ -1,0 +1,14 @@
+-- vim.pack.add({
+--   {
+--     src = 'https://github.com/',
+--     version = 'main'
+--   },
+-- })
+
+-- -- for require vimscript config example
+-- local ddc_config_path = vim.fn.stdpath("config") .. "/vimscript_for_plugins/ddc.vim"
+-- if vim.fn.filereadable(ddc_config_path) == 1 then
+--   vim.cmd("source " .. ddc_config_path)
+-- else
+--   vim.notify("DDC config file not found: " .. ddc_config_path, vim.log.levels.WARN)
+-- end
