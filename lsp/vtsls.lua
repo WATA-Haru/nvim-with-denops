@@ -26,26 +26,6 @@ local vtsls_config = {
         },
       },
     },
-    typescript = {
-      suggest = {
-        autoImports = true,
-        includeCompletionsForModuleExports = true,
-      },
-      preferences = {
-        importModuleSpecifier = "relative",
-        includePackageJsonAutoImports = "auto",
-      },
-    },
-    javascript = {
-      suggest = {
-        autoImports = true,
-        includeCompletionsForModuleExports = true,
-      },
-      preferences = {
-        importModuleSpecifier = "relative",
-        includePackageJsonAutoImports = "auto",
-      },
-    },
   },
   filetypes = tsserver_filetypes,
 }
