@@ -14,16 +14,15 @@ Modern Neovim configuration using Neovim's native package manager (`vim.pack`) w
 nvim-with-denops/
 ├── init.lua                    # Main configuration entry point
 ├── lsp/                        # LSP server configurations
-├── lua/
-│   ├── config/                # Core Neovim configurations
-│   │   ├── clipboard.lua      # Clipboard settings (WSL win32yank)
-│   │   ├── keys.lua           # Key mappings
-│   │   ├── lsp.lua            # LSP global settings
-│   │   ├── opts.lua           # Neovim options
-│   │   └── plugins.lua        # Plugin loading orchestration
-│   │   └── colorscheme.lua    # coloscheme setting and toggle color
-│   └── plugins/               # Plugin configurations
-└── vimscript_for_plugins/     # VimScript configurations
+└── lua/
+    ├── config/                # Core Neovim configurations
+    │   ├── clipboard.lua      # Clipboard settings (WSL win32yank)
+    │   ├── colorscheme.lua    # Colorscheme settings and ToggleCol command
+    │   ├── keys.lua           # Key mappings
+    │   ├── lsp.lua            # LSP global settings
+    │   ├── opts.lua           # Neovim options
+    │   └── plugins.lua        # Plugin loading orchestration
+    └── plugins/               # Plugin configurations
 ```
 
 ### Directory Descriptions
@@ -31,7 +30,6 @@ nvim-with-denops/
 - **`lsp/`**: Individual LSP server configurations using `vim.lsp.config()`
 - **`lua/config/`**: Core Neovim settings split by concern
 - **`lua/plugins/`**: Plugin installation and setup using `vim.pack.add()`
-- **`vimscript_for_plugins/`**: VimScript configs for plugins that require it
 
 ### lua/config/ Files
 

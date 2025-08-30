@@ -16,16 +16,15 @@ Neovimネイティブのパッケージマネージャー（`vim.pack`）とDeno
 nvim-with-denops/
 ├── init.lua                    # メイン設定エントリーポイント
 ├── lsp/                        # LSPサーバー設定
-├── lua/
-│   ├── config/                # Neovimコア設定
-│   │   ├── clipboard.lua      # クリップボード設定（WSL win32yank）
-│   │   ├── keys.lua           # キーマッピング
-│   │   ├── lsp.lua            # LSPグローバル設定
-│   │   ├── opts.lua           # Neovimオプション
-│   │   └── plugins.lua        # プラグイン読み込み制御
-│   │   └── colorscheme.lua    # colorschemeと切り替え設定
-│   └── plugins/               # プラグイン設定
-└── vimscript_for_plugins/     # VimScript設定
+└── lua/
+    ├── config/                # Neovimコア設定
+    │   ├── clipboard.lua      # クリップボード設定（WSL win32yank）
+    │   ├── colorscheme.lua    # カラースキーム設定とToggleColコマンド
+    │   ├── keys.lua           # キーマッピング
+    │   ├── lsp.lua            # LSPグローバル設定
+    │   ├── opts.lua           # Neovimオプション
+    │   └── plugins.lua        # プラグイン読み込み制御
+    └── plugins/               # プラグイン設定
 ```
 
 ### ディレクトリ説明
@@ -33,7 +32,6 @@ nvim-with-denops/
 - **`lsp/`**: `vim.lsp.config()`を使用した個別LSPサーバー設定
 - **`lua/config/`**: 関心事別に分離されたNeovimコア設定
 - **`lua/plugins/`**: `vim.pack.add()`を使用したプラグインインストールと設定
-- **`vimscript_for_plugins/`**: VimScriptが必要なプラグイン用設定
 
 ### lua/config/ファイル詳細
 
