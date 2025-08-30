@@ -59,6 +59,10 @@ vim.pack.add({
     src = 'https://github.com/uga-rosa/ddc-source-lsp-setup',
     version = 'main'
   },
+  {
+    src = 'https://github.com/uga-rosa/ddc-previewer-floating',
+    version = 'main'
+  },
   -- Filters (matchers, sorters, converters)
   {
     src = 'https://github.com/Shougo/ddc-filter-matcher_head',
@@ -92,7 +96,8 @@ vim.fn['ddc#custom#patch_global']('ui', 'native')
 -- Sources configuration
 -- ddc-source-lsp supports native-lsp!
 -- https://github.com/Shougo/ddc-source-lsp/blob/main/doc/ddc-source-lsp.txt
-vim.fn['ddc#custom#patch_global']('sources', {'lsp', 'around', 'file'})
+-- snip https://github.com/uga-rosa/ddc-source-vsnip/blob/main/doc/ddc-source-vsnip.txt
+vim.fn['ddc#custom#patch_global']('sources', {'lsp', 'around', 'file', 'vsnip'})
 
 -- Source options configuration
 vim.fn['ddc#custom#patch_global']('sourceOptions', {
@@ -117,9 +122,13 @@ vim.fn['ddc#custom#patch_global']('sourceOptions', {
     isVolatile = true,
     mark = 'lsp',
     forceCompletionPattern = [[\.\w*|:\w*|->\w*]],
+    keywordPattern = [[\k+]],
     sorters = {'sorter_lsp-kind'},
     minAutoCompleteLength = 1,
     maxItems = 10,
+  },
+  vsnip = {
+    mark = 'vsnip',
   },
 })
 
@@ -127,15 +136,15 @@ vim.fn['ddc#custom#patch_global']('sourceOptions', {
 -- https://github.com/shun/dotconfig/blob/0bf4c710b448020f7f10d79b1bfe8374d3beaeee/nvim/rc/plugins/ddc/ddc.vim#L49
 vim.fn['ddc#custom#patch_global']('sourceParams', {
   lsp = {
+    enableResolveItem = true,
+    enableAdditionalTextEdit = true,
+    enableDisplayDetail = true,
+    enableMatchLabel = true,
     lspEngine = 'nvim-lsp',
     snippetEngine = vim.fn['denops#callback#register'](function(body)
       return vim.fn['vsnip#anonymous'](body)
     end),
-    bufnr = vim.NIL,
     confirmBehavior = 'insert',
-    enableAdditionalTextEdit = true,
-    enableDisplayDetail = true,
-    enableResolveItem = true,
   },
 })
 
@@ -161,17 +170,26 @@ vim.fn['ddc#custom#patch_filetype'](
   }
 )
 
--- Register snippet engine (vim-vsnip) if available
-if vim.fn.exists('*vsnip#anonymous') == 1 then
-  vim.fn['ddc#custom#patch_global']('sourceParams', {
-    lsp = {
-      snippetEngine = vim.fn['denops#callback#register'](function(body)
-        return vim.fn['vsnip#anonymous'](body)
-      end),
-    }
-  })
-end
+-- Setup additional DDC components
+require("ddc_source_lsp_setup").setup()
+--require("lspconfig").denols.setup({})
 
+local ddc_previewer_floating = require("ddc_previewer_floating")
+ddc_previewer_floating.setup({
+  ui = "native",
+})
+ddc_previewer_floating.enable()
+
+-- Configure signature help
+vim.g.signature_help_config = {
+  contentsStyle = "full",
+  viewStyle = "floating"
+}
+vim.g.signature_help_enabned = 1
+
+-- Enable signature help and popup preview
+vim.fn['signature_help#enable']()
+vim.fn['popup_preview#enable']()
 -- Enable DDC
 vim.fn['ddc#enable']()
 
@@ -193,9 +211,4 @@ vim.keymap.set('i', '<S-TAB>', function()
     return '<C-h>'
   end
 end, { expr = true, desc = 'DDC completion back' })
-
--- Setup additional DDC components
-require("ddc_source_lsp_setup").setup()
-require("lspconfig").denols.setup({})
-
 
