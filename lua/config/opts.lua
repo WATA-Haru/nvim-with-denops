@@ -21,4 +21,4 @@ vim.opt.listchars = {
 }
 vim.opt.expandtab = true
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+vim.opt.cursorcolumn = false -- preview floatingとかぶって見えにくくなるのでfase

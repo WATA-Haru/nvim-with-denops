@@ -87,6 +87,10 @@ vim.pack.add({
     src = 'https://github.com/matsui54/denops-signature_help',
     version = 'main'
   },
+ -- {
+ --   src = 'https://github.com/matsui54/denops-popup-preview.vim',
+ --   version = 'main'
+ -- },
   {
     src = 'https://github.com/uga-rosa/ddc-previewer-floating',
     version = 'main'
@@ -176,13 +180,24 @@ vim.fn['ddc#custom#patch_filetype'](
 -- Setup additional DDC components
 require("ddc_source_lsp_setup").setup()
 --require("lspconfig").denols.setup({})
+-- require("lspconfig").lua_ls.setup({})
+
+vim.fn['pum#set_option']({
+  border = "double",
+  preview = false, -- pum help preview off
+})
 
 local ddc_previewer_floating = require("ddc_previewer_floating")
 ddc_previewer_floating.setup({
   ui = "pum",
-  max_width = 100,
-  max_height = 500,
   border = "double",
+  max_width = 500,
+  max_height = 500,
+  min_width = 500,
+  min_height = 500,
+  window_options = {
+    number = true,
+  },
 })
 ddc_previewer_floating.enable()
 
@@ -194,15 +209,16 @@ vim.g.signature_help_config = {
 
 -- Enable signature help and popup preview
 vim.fn['signature_help#enable']()
--- vim.fn['popup_preview#enable']()
 
 -- Enable DDC
 vim.fn['ddc#enable']()
 
--- Key mappings for completion
+-- Key mappings for completion using pum.vim
+-- Use Cmd mode to avoid E565 error with text changes
 vim.keymap.set('i', '<TAB>', function()
-  if vim.fn.pumvisible() == 1 then
-    return '<C-n>'
+  local pum_visible = vim.fn['pum#visible']()
+  if pum_visible then
+    return '<Cmd>call pum#map#insert_relative(1)<CR>'
   elseif vim.fn.col('.') <= 1 or vim.fn.getline('.'):sub(vim.fn.col('.') - 2, vim.fn.col('.') - 2):match('%s') then
     return '<TAB>'
   else
@@ -211,8 +227,9 @@ vim.keymap.set('i', '<TAB>', function()
 end, { expr = true, desc = 'DDC completion or tab' })
 
 vim.keymap.set('i', '<S-TAB>', function()
-  if vim.fn.pumvisible() == 1 then
-    return '<C-p>'
+  local pum_visible = vim.fn['pum#visible']()
+  if pum_visible then
+    return '<Cmd>call pum#map#insert_relative(-1)<CR>'
   else
     return '<C-h>'
   end
