@@ -13,7 +13,7 @@ vim.pack.add({
     src = 'https://github.com/vim-denops/denops.vim',
     version = 'main'
   },
-  { 
+  {
     -- lspconfig (ddc-source-lsp-setup)
     src = 'https://github.com/neovim/nvim-lspconfig',
     version = "master"
@@ -59,10 +59,6 @@ vim.pack.add({
     src = 'https://github.com/uga-rosa/ddc-source-lsp-setup',
     version = 'main'
   },
-  {
-    src = 'https://github.com/uga-rosa/ddc-previewer-floating',
-    version = 'main'
-  },
   -- Filters (matchers, sorters, converters)
   {
     src = 'https://github.com/Shougo/ddc-filter-matcher_head',
@@ -78,17 +74,14 @@ vim.pack.add({
   },
   -- completion help (signature and popup-preview)
   {
-    src = 'https://github.com/matsui54/denops-popup-preview.vim',
-    version = 'main'
-  },
-  {
     src = 'https://github.com/matsui54/denops-signature_help',
     version = 'main'
   },
+  {
+    src = 'https://github.com/uga-rosa/ddc-previewer-floating',
+    version = 'main'
+  },
 })
-
--- DDC Configuration in Lua (converted from VimScript)
--- cf. https://qiita.com/maachan_9692/items/9b507fd043424013abde
 
 -- Global DDC configuration
 vim.fn['ddc#custom#patch_global']('ui', 'native')
@@ -185,11 +178,11 @@ vim.g.signature_help_config = {
   contentsStyle = "full",
   viewStyle = "floating"
 }
-vim.g.signature_help_enabned = 1
 
 -- Enable signature help and popup preview
 vim.fn['signature_help#enable']()
-vim.fn['popup_preview#enable']()
+-- vim.fn['popup_preview#enable']()
+
 -- Enable DDC
 vim.fn['ddc#enable']()
 
