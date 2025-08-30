@@ -14,6 +14,11 @@ vim.pack.add({
     version = 'main'
   },
   {
+    -- pum.vim
+    src = 'https://github.com/Shougo/pum.vim',
+    version = 'main'
+  },
+  {
     -- lspconfig (ddc-source-lsp-setup)
     src = 'https://github.com/neovim/nvim-lspconfig',
     version = "master"
@@ -38,8 +43,13 @@ vim.pack.add({
     version = 'main'
   },
   -- UI component
+  -- {
+  --   src = 'https://github.com/Shougo/ddc-ui-native',
+  --   version = 'main'
+  -- },
   {
-    src = 'https://github.com/Shougo/ddc-ui-native',
+    -- pum
+    src = 'https://github.com/Shougo/ddc-ui-pum',
     version = 'main'
   },
   -- Sources (completion providers)
@@ -84,7 +94,7 @@ vim.pack.add({
 })
 
 -- Global DDC configuration
-vim.fn['ddc#custom#patch_global']('ui', 'native')
+vim.fn['ddc#custom#patch_global']('ui', 'pum')
 
 -- Sources configuration
 -- ddc-source-lsp supports native-lsp!
@@ -169,7 +179,10 @@ require("ddc_source_lsp_setup").setup()
 
 local ddc_previewer_floating = require("ddc_previewer_floating")
 ddc_previewer_floating.setup({
-  ui = "native",
+  ui = "pum",
+  max_width = 100,
+  max_height = 500,
+  border = "double",
 })
 ddc_previewer_floating.enable()
 
@@ -204,4 +217,12 @@ vim.keymap.set('i', '<S-TAB>', function()
     return '<C-h>'
   end
 end, { expr = true, desc = 'DDC completion back' })
+
+-- Additional pum.vim keymaps for enhanced completion navigation
+vim.keymap.set('i', '<C-n>', '<Cmd>call pum#map#insert_relative(+1)<CR>', { desc = 'Next completion item' })
+vim.keymap.set('i', '<C-p>', '<Cmd>call pum#map#insert_relative(-1)<CR>', { desc = 'Previous completion item' })
+vim.keymap.set('i', '<C-y>', '<Cmd>call pum#map#confirm()<CR>', { desc = 'Confirm completion' })
+vim.keymap.set('i', '<C-e>', '<Cmd>call pum#map#cancel()<CR>', { desc = 'Cancel completion' })
+vim.keymap.set('i', '<PageDown>', '<Cmd>call pum#map#insert_relative_page(+1)<CR>', { desc = 'Next completion page' })
+vim.keymap.set('i', '<PageUp>', '<Cmd>call pum#map#insert_relative_page(-1)<CR>', { desc = 'Previous completion page' })
 
