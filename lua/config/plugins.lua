@@ -13,4 +13,4 @@ require('plugins.snacks') -- useful tools (to rename file automatically when Oil
 require('plugins.ddc') -- code completation
 require('plugins.neoscroll') -- scroll plugin
 require('plugins.diffview') -- diffview
-
+require('plugins.nvim-surround') -- nvim-surround 
