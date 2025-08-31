@@ -33,3 +33,6 @@ map('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', { 
 map('n', '<leader>fb', '<cmd>lua require"telescope.builtin".buffers()<CR>', { desc = 'Telescope buffers' })
 map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { desc = 'Telescope help tags' })
 
+-- fern drawer
+map('n', '<leader>e', '<cmd>Fern . -drawer -toggle <CR>', { desc = 'File viewer(fern)' })
+
