@@ -155,11 +155,6 @@ vim.fn['ddc#custom#patch_global']('sourceParams', {
   },
 })
 
--- Auto complete events
-vim.fn['ddc#custom#patch_global']('autoCompleteEvents', {
-  'InsertEnter', 'TextChangedI', 'TextChangedP', 'TextChangedT'
-})
-
 -- Filetype specific configuration
 vim.fn['ddc#custom#patch_filetype'](
   {'ps1', 'dosbatch', 'autohotkey', 'registry'},
@@ -182,11 +177,13 @@ require("ddc_source_lsp_setup").setup()
 --require("lspconfig").denols.setup({})
 -- require("lspconfig").lua_ls.setup({})
 
+-- pum completetion setting
 vim.fn['pum#set_option']({
   border = "double",
   preview = false, -- pum help preview off
 })
 
+-- completetion help (floating window) settings
 local ddc_previewer_floating = require("ddc_previewer_floating")
 ddc_previewer_floating.setup({
   ui = "pum",
@@ -199,7 +196,6 @@ ddc_previewer_floating.setup({
     number = true,
   },
 })
-ddc_previewer_floating.enable()
 
 -- Configure signature help
 vim.g.signature_help_config = {
@@ -207,10 +203,9 @@ vim.g.signature_help_config = {
   viewStyle = "floating"
 }
 
--- Enable signature help and popup preview
+-- enable
+ddc_previewer_floating.enable()
 vim.fn['signature_help#enable']()
-
--- Enable DDC
 vim.fn['ddc#enable']()
 
 -- Key mappings for completion using pum.vim
