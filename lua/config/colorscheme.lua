@@ -1,10 +1,10 @@
--- default
-vim.cmd[[ colorscheme iceberg ]]
-
 -- Colorscheme configuration
-local default_colorscheme = "iceberg"
-local reading_colorscheme = "lackluster"
+local default_colorscheme = "lackluster"
+local reading_colorscheme = "iceberg"
 local current_colorscheme = default_colorscheme
+
+-- default
+pcall(vim.cmd, "colorscheme " .. default_colorscheme)
 
 -- Toggle between default and reading colorschemes
 vim.api.nvim_create_user_command(
