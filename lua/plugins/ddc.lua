@@ -132,7 +132,7 @@ vim.fn['ddc#custom#patch_global']('sourceOptions', {
     keywordPattern = [[\k+]],
     sorters = {'sorter_lsp-kind'},
     minAutoCompleteLength = 1,
-    maxItems = 10,
+    -- maxItems = 10,
   },
   vsnip = {
     mark = 'vsnip',
@@ -188,10 +188,10 @@ local ddc_previewer_floating = require("ddc_previewer_floating")
 ddc_previewer_floating.setup({
   ui = "pum",
   border = "double",
-  max_width = 500,
-  max_height = 500,
-  min_width = 500,
-  min_height = 500,
+  max_width = 80,
+  max_height = 80,
+  min_width = 30,
+  min_height = 30,
   window_options = {
     number = true,
   },
@@ -199,7 +199,7 @@ ddc_previewer_floating.setup({
 
 -- Configure signature help
 vim.g.signature_help_config = {
-  contentsStyle = "full",
+  contentsStyle = "labels",
   viewStyle = "floating"
 }
 
