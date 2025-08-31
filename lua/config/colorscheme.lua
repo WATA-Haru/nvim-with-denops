@@ -1,8 +1,8 @@
 -- default
-vim.cmd[[ colorscheme tender ]]
+vim.cmd[[ colorscheme iceberg ]]
 
 -- Colorscheme configuration
-local default_colorscheme = "tender"
+local default_colorscheme = "iceberg"
 local reading_colorscheme = "lackluster"
 local current_colorscheme = default_colorscheme
 
