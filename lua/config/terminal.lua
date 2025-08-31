@@ -24,3 +24,4 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
   desc = 'Start insert mode when terminal opens'
 })
+

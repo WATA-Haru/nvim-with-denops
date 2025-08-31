@@ -89,3 +89,29 @@ chmod +x ~/.local/bin/win32yank.exe
 ```
 
 Configuration is in `lua/config/clipboard.lua`.
+
+## WSL: Opening URLs with Windows Browser
+
+Configuration for opening URLs with Windows-side browsers (Brave, Chrome, etc.) from WSL:
+
+### Setup
+
+1. **Add `.env*` to `.gitignore`** (exclude personal settings from Git management)
+
+2. **Create `.env.win_browser` file**
+   ```bash
+   # Create in nvim config directory
+   touch ~/.config/nvim-with-denops/.env.win_browser
+   ```
+
+3. **Set browser path**
+   ```bash
+   BROWSER_PATH_ON_WINDOWS=/mnt/c/<your-browser-path.exe>
+   ```
+
+### Usage
+
+- **`gx` key**: Open HTTP/HTTPS URL under cursor with Windows browser
+- **`:Open https://example.com`**: Open specified URL with Windows browser
+
+Configuration is in `lua/config/open_url_from_win_browser_from_wsl.lua`.
