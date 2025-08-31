@@ -19,6 +19,10 @@ map('n', '<Leader>?', '?\\C', opts)
 map('n', '<Leader>n', '/<Up>\\C<CR>', opts)
 map('n', '<Leader>N', '?<Up>\\C<CR>', opts)
 
+-- terminal mode settings
+-- https://zenn.dev/ryo_kawamata/articles/improve-neovmi-terminal
+map('t', 'jk', '<C-\\><C-n>', opts)
+
 -- telescope
 map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
 -- or map('n', 'gd', '<cmd>lua vim.lsp.buf.definition() <CR>', opts)
