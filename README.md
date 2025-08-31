@@ -90,3 +90,29 @@ chmod +x ~/.local/bin/win32yank.exe
 ```
 
 設定は`lua/config/clipboard.lua`にあります。
+
+## WSL: Windows側ブラウザでURL開く設定
+
+WSLからWindows側のブラウザ（Brave、Chrome等）でURLを開くための設定：
+
+### 事前準備
+
+1. **`.gitignore`に`.env*`を追加**（個人設定をGit管理から除外）
+
+2. **`.env.win_browser`ファイルを作成**
+   ```bash
+   # nvim設定ディレクトリに作成
+   touch ~/.config/nvim-with-denops/.env.win_browser
+   ```
+
+3. **ブラウザパスを設定**
+   ```bash
+   BROWSER_PATH_ON_WINDOWS=/mnt/c/<your-browser-path.exe>
+   ```
+
+### 使用方法
+
+- **`gx`キー**: カーソル下のHTTP/HTTPSのURLをWindows側ブラウザで開く
+- **`:Open https://example.com`**: 指定URLをWindows側ブラウザで開く
+
+設定は`lua/config/open_url_from_win_browser_from_wsl.lua`にあります。
