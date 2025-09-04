@@ -40,3 +40,21 @@ map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { 
 -- fern drawer
 map('n', '<leader>e', '<cmd>Fern . -drawer -toggle <CR>', { desc = 'File viewer(fern)' })
 
+-- フローティングウィンドウへ移動するキーマッピングを定義
+vim.keymap.set('n', '<C-w>f', function()
+  local current_win = vim.api.nvim_get_current_win()
+
+  -- すべてのウィンドウをチェック
+  for _, win_id in ipairs(vim.api.nvim_list_wins()) do
+    local win_config = vim.api.nvim_win_get_config(win_id)
+
+    -- フローティングウィンドウであり、かつ現在アクティブでないウィンドウを探す
+    if win_config.relative ~= '' and win_id ~= current_win then
+      vim.api.nvim_set_current_win(win_id)
+      return
+    end
+  end
+
+  -- フローティングウィンドウが見つからない場合、通常のウィンドウ移動を試みる
+  vim.cmd('wincmd w')
+end, { desc = 'Jump to a floating window' })
