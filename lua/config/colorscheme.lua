@@ -6,6 +6,7 @@ local current_colorscheme = default_colorscheme
 local function override_colorscheme()
   -- visual highlight override
   vim.cmd[[highlight Visual  ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e]]
+  vim.cmd[[hi PmenuSel blend=0 ]]
 end
 
 -- default
@@ -38,4 +39,15 @@ vim.api.nvim_create_user_command(
   { desc = "Toggle between " .. default_colorscheme .. " and " .. reading_colorscheme .. " colorschemes" }
 )
 
-
+-- wip
+--vim.api.nvim_create_user_command(
+--  "ToggleVimOpacity",
+--  function()
+--    vim.cmd[[highlight Normal ctermbg=NONE guibg=NONE ]]
+--    vim.cmd[[highlight NonText ctermbg=NONE guibg=NONE ]]
+--    vim.cmd[[highlight LineNr ctermbg=NONE guibg=NONE ]]
+--    vim.cmd[[highlight Folded ctermbg=NONE guibg=NONE ]]
+--    vim.cmd[[highlight EndOfBuffer ctermbg=none guibg=NONE ]]
+--  end,
+--  { desc = "Toggle vim opacity" }
+--)
