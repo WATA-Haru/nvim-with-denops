@@ -87,16 +87,15 @@ vim.pack.add({
     src = 'https://github.com/matsui54/denops-signature_help',
     version = 'main'
   },
- -- {
- --   src = 'https://github.com/matsui54/denops-popup-preview.vim',
- --   version = 'main'
- -- },
   {
-    src = 'https://github.com/uga-rosa/ddc-previewer-floating',
+    src = 'https://github.com/matsui54/denops-popup-preview.vim',
     version = 'main'
   },
+  --{
+  --  src = 'https://github.com/uga-rosa/ddc-previewer-floating',
+  --  version = 'main'
+  --},
 })
-
 -- Global DDC configuration
 vim.fn['ddc#custom#patch_global']('ui', 'pum')
 
@@ -174,28 +173,44 @@ vim.fn['ddc#custom#patch_filetype'](
 
 -- Setup additional DDC components
 require("ddc_source_lsp_setup").setup()
---require("lspconfig").denols.setup({})
--- require("lspconfig").lua_ls.setup({})
 
 -- pum completetion setting
 vim.fn['pum#set_option']({
-  border = "double",
+  border = "none",
   preview = false, -- pum help preview off
 })
 
--- completetion help (floating window) settings
-local ddc_previewer_floating = require("ddc_previewer_floating")
-ddc_previewer_floating.setup({
-  ui = "pum",
-  border = "double",
-  max_width = 80,
-  max_height = 80,
-  min_width = 30,
-  min_height = 30,
-  window_options = {
-    number = true,
-  },
-})
+-- https://github.com/matsui54/denops-popup-preview.vim/issues/35
+local key_map_opts = {
+    noremap = true,
+    expr = true,
+    silent = true,
+    buffer = true,
+    -- the `popup_preview#scroll` returns the internal codes already, it results
+    -- in unexpected behavior when this option is true.
+    -- this option is true on default when `expr` is true.
+    replace_keycodes = false
+}
+-- Create the scroll keymap only for attached buffer.
+vim.api.nvim_create_autocmd(
+    "LspAttach",
+    {
+        callback = function()
+            vim.keymap.set("i", "<C-f>",
+                function()
+                    return vim.fn['popup_preview#scroll'](4)
+                end,
+                key_map_opts
+            )
+            vim.keymap.set("i", "<C-b>",
+                function()
+                    return vim.fn['popup_preview#scroll'](-4)
+                end,
+                key_map_opts
+            )
+        end
+    }
+)
 
 -- Configure signature help
 vim.g.signature_help_config = {
@@ -204,8 +219,9 @@ vim.g.signature_help_config = {
 }
 
 -- enable
-ddc_previewer_floating.enable()
+-- ddc_previewer_floating.enable()
 vim.fn['signature_help#enable']()
+vim.fn['popup_preview#enable']()
 vim.fn['ddc#enable']()
 
 -- Key mappings for completion using pum.vim
