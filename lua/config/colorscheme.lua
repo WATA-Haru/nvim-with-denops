@@ -3,8 +3,14 @@ local default_colorscheme = "iceberg"
 local reading_colorscheme = "lackluster"
 local current_colorscheme = default_colorscheme
 
+local function override_colorscheme()
+  -- visual highlight override
+  vim.cmd[[highlight Visual  ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e]]
+end
+
 -- default
 pcall(vim.cmd, "colorscheme " .. default_colorscheme)
+override_colorscheme()
 
 -- Toggle between default and reading colorschemes
 vim.api.nvim_create_user_command(
@@ -27,6 +33,9 @@ vim.api.nvim_create_user_command(
         print("Error: '" .. default_colorscheme .. "' colorscheme not found")
       end
     end
+    override_colorscheme()
   end,
   { desc = "Toggle between " .. default_colorscheme .. " and " .. reading_colorscheme .. " colorschemes" }
 )
+
+
