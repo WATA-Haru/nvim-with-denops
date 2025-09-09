@@ -5,8 +5,7 @@ local current_colorscheme = default_colorscheme
 
 local function override_colorscheme()
   -- visual highlight override
-  vim.cmd[[highlight Visual  ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e]]
-  vim.cmd[[hi PmenuSel blend=0 ]]
+  vim.cmd[[highlight Visual  ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e ]]
 end
 
 -- default
