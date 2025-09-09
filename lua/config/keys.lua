@@ -25,6 +25,7 @@ map('t', 'jk', '<C-\\><C-n>', opts)
 
 -- telescope
 map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
+map('n', 'vgd', '<cmd>lua require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })<CR>', opts)
 -- or map('n', 'gd', '<cmd>lua vim.lsp.buf.definition() <CR>', opts)
 map('n', 'gb', '<C-t>', opts)
 map('n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', opts)
