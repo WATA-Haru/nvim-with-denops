@@ -29,3 +29,7 @@ require('render-markdown').setup({
   },
 })
 
+-- disable tab when in markdown file because it conflicts with copilot
+-- https://github.com/ixru/nvim-markdown?tab=readme-ov-file#visual-mode
+vim.keymap.set('i', '<Plug>', '<Plug>Markdown_Jump', { noremap = false, silent = true, buffer = true })
+

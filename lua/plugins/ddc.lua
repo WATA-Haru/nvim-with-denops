@@ -226,25 +226,25 @@ vim.fn['ddc#enable']()
 
 -- Key mappings for completion using pum.vim
 -- Use Cmd mode to avoid E565 error with text changes
-vim.keymap.set('i', '<TAB>', function()
-  local pum_visible = vim.fn['pum#visible']()
-  if pum_visible then
-    return '<Cmd>call pum#map#insert_relative(1)<CR>'
-  elseif vim.fn.col('.') <= 1 or vim.fn.getline('.'):sub(vim.fn.col('.') - 2, vim.fn.col('.') - 2):match('%s') then
-    return '<TAB>'
-  else
-    return vim.fn['ddc#map#manual_complete']()
-  end
-end, { expr = true, desc = 'DDC completion or tab' })
-
-vim.keymap.set('i', '<S-TAB>', function()
-  local pum_visible = vim.fn['pum#visible']()
-  if pum_visible then
-    return '<Cmd>call pum#map#insert_relative(-1)<CR>'
-  else
-    return '<C-h>'
-  end
-end, { expr = true, desc = 'DDC completion back' })
+-- vim.keymap.set('i', '<TAB>', function()
+--   local pum_visible = vim.fn['pum#visible']()
+--   if pum_visible then
+--     return '<Cmd>call pum#map#insert_relative(1)<CR>'
+--   elseif vim.fn.col('.') <= 1 or vim.fn.getline('.'):sub(vim.fn.col('.') - 2, vim.fn.col('.') - 2):match('%s') then
+--     return '<TAB>'
+--   else
+--     return vim.fn['ddc#map#manual_complete']()
+--   end
+-- end, { expr = true, desc = 'DDC completion or tab' })
+-- 
+-- vim.keymap.set('i', '<S-TAB>', function()
+--   local pum_visible = vim.fn['pum#visible']()
+--   if pum_visible then
+--     return '<Cmd>call pum#map#insert_relative(-1)<CR>'
+--   else
+--     return '<C-h>'
+--   end
+-- end, { expr = true, desc = 'DDC completion back' })
 
 -- Additional pum.vim keymaps for enhanced completion navigation
 vim.keymap.set('i', '<C-n>', '<Cmd>call pum#map#insert_relative(+1)<CR>', { desc = 'Next completion item' })
