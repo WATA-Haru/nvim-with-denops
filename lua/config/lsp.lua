@@ -9,14 +9,7 @@ vim.lsp.enable('lua_ls')
 vim.lsp.enable('marksman')
 vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
 vim.lsp.enable('pyright')
-
--- https://gpanders.com/blog/whats-new-in-neovim-0-11/
--- vim.diagnostic.config({ virtual_text = true })
--- Enable LSP servers
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('marksman')
-vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
-vim.lsp.enable('pyright')
+vim.lsp.enable('copilot')
 
 -- https://eiji.page/blog/neovim-diagnostic-config/
 vim.diagnostic.config({
