@@ -10,6 +10,7 @@ vim.lsp.enable('marksman')
 vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
 vim.lsp.enable('pyright')
 vim.lsp.enable('copilot')
+vim.lsp.inline_completion.enable(true)
 
 -- https://eiji.page/blog/neovim-diagnostic-config/
 vim.diagnostic.config({
@@ -19,6 +20,53 @@ vim.diagnostic.config({
     end,
   },
 })
+
+vim.api.nvim_create_user_command(
+  'ToggleCopilot',
+  function ()
+    print("=== ToggleCopilot DEBUG START ===")
+    
+    local client_list = vim.lsp.get_clients()
+    print("client_list type: " .. type(client_list))
+    print("client_list length: " .. #client_list)
+    
+    -- クライアント一覧をデバッグ出力
+    for i, client in ipairs(client_list) do
+      print("Client " .. i .. ": name=" .. (client.name or "nil") .. ", id=" .. (client.id or "nil"))
+    end
+    
+    -- copilotクライアントがあるかチェック
+    local copilot_client = nil
+    for _, client in ipairs(client_list) do
+      if client.name == "copilot" then
+        copilot_client = client
+        break
+      end
+    end
+    
+    print("copilot_client found: " .. tostring(copilot_client ~= nil))
+    
+    if copilot_client then
+      print("Disabling copilot...")
+      -- 全てのcopilotクライアントを停止
+      for _, client in ipairs(client_list) do
+        if client.name == "copilot" then
+          print("Stopping copilot client id: " .. client.id)
+          client.stop()
+        end
+      end
+      vim.notify("Copilot disabled", vim.log.levels.INFO)
+      return
+    else
+      print("Enabling copilot...")
+      vim.lsp.enable('copilot')
+      vim.notify("Copilot enabled", vim.log.levels.INFO)
+    end
+    
+    print("=== ToggleCopilot DEBUG END ===")
+  end,
+  { desc = "toggle copilot activation" }
+)
 
 -- LSP attach autocmd for additional keymaps
 vim.api.nvim_create_autocmd('LspAttach', {

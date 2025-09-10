@@ -41,6 +41,9 @@ map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { 
 -- fern drawer
 map('n', '<leader>e', '<cmd>Fern . -drawer -toggle <CR>', { desc = 'File viewer(fern)' })
 
+-- copilot completion
+vim.keymap.set('i', '<C-CR>', '<cmd>lua vim.lsp.inline_completion.get()<CR>', { silent = true })
+
 -- フローティングウィンドウへ移動するキーマッピングを定義
 vim.keymap.set('n', '<C-w>f', function()
   local current_win = vim.api.nvim_get_current_win()
