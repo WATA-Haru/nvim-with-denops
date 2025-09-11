@@ -45,8 +45,8 @@ map('n', '<leader>e', '<cmd>Fern . -drawer -toggle <CR>', { desc = 'File viewer(
 -- vim.keymap.set('i', '<C-CR>', '<cmd>lua vim.lsp.inline_completion.get()<CR>', { silent = true })
 vim.keymap.set('i', '<TAB>', '<cmd>lua vim.lsp.inline_completion.get()<CR>', { silent = true })
 
--- zen mode toggle
-map('n', '<leader>ze', '<cmd>lua require("zen-mode").toggle()<CR>', { desc = 'Toggle Zen Mode' })
+-- no-neck-pain toggle
+map('n', '<leader>ze', '<cmd>lua NoNeckPain.toggle()<CR>', { desc = 'Toggle No Neck Pain nvim' })
 
 -- フローティングウィンドウへ移動するキーマッピングを定義
 vim.keymap.set('n', '<C-w>f', function()
