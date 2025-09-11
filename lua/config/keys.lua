@@ -41,9 +41,13 @@ map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { 
 -- fern drawer
 map('n', '<leader>e', '<cmd>Fern . -drawer -toggle <CR>', { desc = 'File viewer(fern)' })
 
+-- disable tab when in markdown file because it conflicts with copilot
+-- https://github.com/ixru/nvim-markdown?tab=readme-ov-file#visual-mode
+vim.keymap.set('i', '<Plug>', '<Plug>Markdown_Jump', opts)
+vim.keymap.set('n', '<Plug>', '<Plug>Markdown_MoveToParentHeader', opts)
+
 -- copilot completion
--- vim.keymap.set('i', '<C-CR>', '<cmd>lua vim.lsp.inline_completion.get()<CR>', { silent = true })
-vim.keymap.set('i', '<TAB>', '<cmd>lua vim.lsp.inline_completion.get()<CR>', { silent = true })
+vim.keymap.set('i', '<tab>', '<cmd>lua vim.lsp.inline_completion.get()<CR>', { silent = true })
 
 -- no-neck-pain toggle
 map('n', '<leader>ze', '<cmd>lua NoNeckPain.toggle()<CR>', { desc = 'Toggle No Neck Pain nvim' })
