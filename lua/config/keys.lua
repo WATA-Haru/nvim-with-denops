@@ -47,7 +47,12 @@ vim.keymap.set('i', '<Plug>', '<Plug>Markdown_Jump', opts)
 vim.keymap.set('n', '<Plug>', '<Plug>Markdown_MoveToParentHeader', opts)
 
 -- copilot completion
-vim.keymap.set('i', '<tab>', '<cmd>lua vim.lsp.inline_completion.get()<CR>', { silent = true })
+-- https://neovim.io/doc/user/lsp.html#vim.lsp.inline_completion.get()
+vim.keymap.set('i', '<tab>', function()
+  if not vim.lsp.inline_completion.get() then
+    return '<tab>'
+  end
+end, { expr = true, desc = 'Accept the current inline completion' })
 
 -- no-neck-pain toggle
 map('n', '<leader>ze', '<cmd>lua NoNeckPain.toggle()<CR>', { desc = 'Toggle No Neck Pain nvim' })
