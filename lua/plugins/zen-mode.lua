@@ -4,3 +4,10 @@ vim.pack.add({
     version = 'main'
   }
 })
+require('zen-mode').setup {
+  plugins = {
+    options = {
+      laststatus = 3, -- turn off the statusline in zen mode
+    },
+  }
+}
