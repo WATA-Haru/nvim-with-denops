@@ -11,8 +11,8 @@ vim.pack.add({
 
 require("CopilotChat").setup({
   -- model = 'claude-3.7-sonnet',
+  -- model = 'claude-opus-4',
   model = 'claude-sonnet-4',
-  -- model = 'claude-4.0-sonnet',
   temperature = 0.1,           -- Lower = focused, higher = creative
   window = {
    layout = 'vertical',       -- 'vertical', 'horizontal', 'float'
