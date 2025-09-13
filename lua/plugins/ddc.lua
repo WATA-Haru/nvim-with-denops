@@ -178,6 +178,7 @@ require("ddc_source_lsp_setup").setup()
 vim.fn['pum#set_option']({
   border = "none",
   preview = false, -- pum help preview off
+  blend = 30,
 })
 
 -- https://github.com/matsui54/denops-popup-preview.vim/issues/35
@@ -205,6 +206,31 @@ vim.api.nvim_create_autocmd(
             vim.keymap.set("i", "<C-b>",
                 function()
                     return vim.fn['popup_preview#scroll'](-4)
+                end,
+                key_map_opts
+            )
+            -- popup_previewの内容を別バッファで開く
+            vim.keymap.set("i", "<C-t>",
+                function()
+                    -- timer_startで遅延実行してE565エラー回避
+                    vim.fn.timer_start(0, function()
+                        local ok, winid = pcall(vim.fn['popup_preview#doc#get_winid'])
+                        if ok and vim.api.nvim_win_is_valid(winid) then
+                            -- popup_previewの内容を取得
+                            local bufnr = vim.api.nvim_win_get_buf(winid)
+                            local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+                            -- 新しい分割ウィンドウを作成
+                            vim.cmd('split')
+                            -- 新しいバッファを作成
+                            local new_bufnr = vim.api.nvim_create_buf(false, true)
+                            vim.api.nvim_buf_set_lines(new_bufnr, 0, -1, false, lines)
+                            -- 新しいウィンドウでバッファを表示
+                            vim.api.nvim_win_set_buf(0, new_bufnr)
+                        -- else
+                        --  vim.notify("No popup preview window found", vim.log.levels.WARN)
+                        end
+                    end)
+                    -- return ""
                 end,
                 key_map_opts
             )
