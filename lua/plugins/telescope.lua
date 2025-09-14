@@ -12,8 +12,16 @@ vim.pack.add({
 
 require('telescope').setup({
   defaults = {
+    layout_strategy = "vertical",
+    layout_config = {
+      vertical = { width = 0.9 },
+    },
+    -- -- cursor version
+    -- layout_strategy = "cursor",
+    -- layout_config = {
+    --   cursor = { width = 0.9 },
+    -- },
     sorting_strategy = "ascending",
-    winblend = 4,
     file_ignore_patterns = {
       "^.git/",
       "^node_modules/",
