@@ -256,6 +256,18 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+vim.keymap.set('i', '<CR>',
+  function()
+    local pum_visible = vim.fn['pum#visible']()
+    if pum_visible then
+      vim.fn['pum#map#confirm']()
+    else
+      return '<CR>'
+    end
+  end,
+  { expr = true, desc = 'DDC completion or tab' }
+)
+
 -- Key mappings for completion using pum.vim
 -- Use Cmd mode to avoid E565 error with text changes
 -- vim.keymap.set('i', '<TAB>', function()
