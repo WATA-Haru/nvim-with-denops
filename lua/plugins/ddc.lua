@@ -174,12 +174,31 @@ vim.fn['ddc#custom#patch_filetype'](
 -- Setup additional DDC components
 require("ddc_source_lsp_setup").setup()
 
+
 -- pum completetion setting
+vim.cmd[[highlight POPUP_NORMAL guibg=#595e50 guifg=White]]
 vim.fn['pum#set_option']({
   border = "none",
   preview = false, -- pum help preview off
-  blend = 30,
+  blend = 40,
+  horizontal_menu = "POPUP_NORMAL",
 })
+-- Configure signature help
+vim.g.signature_help_config = {
+  contentsStyle = "labels",
+  viewStyle = "floating"
+}
+
+-- puopup preview setting
+vim.g.popup_preview_config = {
+  winblend = 40,
+}
+
+-- enable
+-- ddc_previewer_floating.enable()
+vim.fn['signature_help#enable']()
+vim.fn['popup_preview#enable']()
+vim.fn['ddc#enable']()
 
 -- https://github.com/matsui54/denops-popup-preview.vim/issues/35
 local key_map_opts = {
@@ -226,29 +245,16 @@ vim.api.nvim_create_autocmd(
                             vim.api.nvim_buf_set_lines(new_bufnr, 0, -1, false, lines)
                             -- 新しいウィンドウでバッファを表示
                             vim.api.nvim_win_set_buf(0, new_bufnr)
-                        -- else
-                        --  vim.notify("No popup preview window found", vim.log.levels.WARN)
+                        else
+                            vim.notify("No popup preview window found", vim.log.levels.WARN)
                         end
                     end)
-                    -- return ""
                 end,
                 key_map_opts
             )
         end
     }
 )
-
--- Configure signature help
-vim.g.signature_help_config = {
-  contentsStyle = "labels",
-  viewStyle = "floating"
-}
-
--- enable
--- ddc_previewer_floating.enable()
-vim.fn['signature_help#enable']()
-vim.fn['popup_preview#enable']()
-vim.fn['ddc#enable']()
 
 -- Key mappings for completion using pum.vim
 -- Use Cmd mode to avoid E565 error with text changes
@@ -271,6 +277,7 @@ vim.fn['ddc#enable']()
 --     return '<C-h>'
 --   end
 -- end, { expr = true, desc = 'DDC completion back' })
+--
 
 -- Additional pum.vim keymaps for enhanced completion navigation
 vim.keymap.set('i', '<C-n>', '<Cmd>call pum#map#insert_relative(+1)<CR>', { desc = 'Next completion item' })
