@@ -47,14 +47,6 @@ map('n', '<leader>e', '<cmd>Fern . -drawer -toggle <CR>', { desc = 'File viewer(
 vim.keymap.set('i', '<Plug>', '<Plug>Markdown_Jump', opts)
 vim.keymap.set('n', '<Plug>', '<Plug>Markdown_MoveToParentHeader', opts)
 
--- copilot completion
--- https://neovim.io/doc/user/lsp.html#vim.lsp.inline_completion.get()
-vim.keymap.set('i', '<tab>', function()
-  if not vim.lsp.inline_completion.get() then
-    return '<tab>'
-  end
-end, { expr = true, desc = 'Accept the current inline completion' })
-
 -- no-neck-pain toggle
 map('n', '<leader>ze', '<cmd>lua NoNeckPain.toggle()<CR>', { desc = 'Toggle No Neck Pain nvim' })
 

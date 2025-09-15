@@ -18,4 +18,5 @@ require('plugins.neoscroll') -- scroll plugin
 require('plugins.diffview') -- diffview
 require('plugins.nvim-surround') -- nvim-surround 
 require('plugins.markdown') -- markdown support and rendering
-require('plugins.copilot-chat') -- copilot chat
+require('plugins.copilotLua') -- copilot.lua
+require('plugins.copilotChat') -- copilot chat

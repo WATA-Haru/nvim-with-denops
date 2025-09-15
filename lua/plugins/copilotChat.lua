@@ -4,6 +4,10 @@ vim.pack.add({
     version = "master",
   },
   {
+    src = "https://github.com/zbirenbaum/copilot.lua",
+    version = "master",
+  },
+  {
     src = "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
     version = "main",
   },
@@ -11,7 +15,7 @@ vim.pack.add({
 
 require("CopilotChat").setup({
   -- model = 'claude-3.7-sonnet',
-  -- model = 'claude-opus-4',
+  -- model = 'claude-opus-4', -- very smart but 10x token cost
   model = 'claude-sonnet-4',
   temperature = 0.1,           -- Lower = focused, higher = creative
   window = {
@@ -21,7 +25,11 @@ require("CopilotChat").setup({
     title = '🤖 AI Assistant',
     zindex = 100, -- Ensure window stays on top
   },
-
+  mappings = {
+      complete = {
+      insert = "<S-Tab>",
+    },
+  },
   auto_insert_mode = true,     -- Enter insert mode when opening
 
   headers = {
