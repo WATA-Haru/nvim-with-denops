@@ -49,3 +49,21 @@ require('copilot').setup({
 local hl = vim.api.nvim_get_hl(0, { name = 'Comment' })
 vim.api.nvim_set_hl(0, 'CopilotSuggestion', vim.tbl_extend('force', hl, { underline = true }))
 
+
+-- Tabキーでサジェストを受け入れる設定(space 2回押しで自分は使わなかったのでコメントアウト)
+-- https://scrapbox.io/Development-Environment/copilot.lua%E3%81%A7%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%9E%E3%83%83%E3%83%97
+-- vim.keymap.set("i", '<Tab>', function()
+--    -- copilotがサジェストしていれば真
+--    if require("copilot.suggestion").is_visible() then
+--    	require("copilot.suggestion").accept()
+--    else
+--      	-- キーコードをneovimが解釈可能な形式に変換
+--        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+--    end
+--    
+--    end, {
+--    	-- コマンドラインへ表示しない
+--    	silent = true,
+--    	}
+-- )
+-- 

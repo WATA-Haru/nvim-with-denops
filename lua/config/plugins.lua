@@ -10,7 +10,6 @@ require('plugins.nvim-lspconfig') -- lsp settings
 require('plugins.telescope') -- fuzzy finder
 require('plugins.gin') -- git command plugin
 require('plugins.gitsigns') -- git blame view
--- require('plugins.zen-mode') -- focus mode
 require('plugins.no-neck-pain') -- focus mode
 require('plugins.snacks') -- useful tools (to rename file automatically when Oil changes file path)
 require('plugins.ddc') -- code completation
@@ -18,5 +17,7 @@ require('plugins.neoscroll') -- scroll plugin
 require('plugins.diffview') -- diffview
 require('plugins.nvim-surround') -- nvim-surround 
 require('plugins.markdown') -- markdown support and rendering
+-- AI tools integration
 require('plugins.copilotLua') -- copilot.lua
 require('plugins.copilotChat') -- copilot chat
+require('plugins.codeCompanion') -- chat & code companion
