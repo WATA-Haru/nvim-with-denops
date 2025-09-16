@@ -21,3 +21,5 @@ require('plugins.markdown') -- markdown support and rendering
 require('plugins.copilotLua') -- copilot.lua
 require('plugins.copilotChat') -- copilot chat
 require('plugins.codeCompanion') -- chat & code companion
+require('plugins.claudecode') -- claude integration
+
