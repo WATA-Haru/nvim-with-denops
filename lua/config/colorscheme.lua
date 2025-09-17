@@ -6,6 +6,9 @@ local current_colorscheme = default_colorscheme
 local function override_colorscheme()
   -- visual mode highlight override (yellow color)
   vim.cmd[[highlight Visual  ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e ]]
+  vim.cmd[[highlight clear CursorLine ]]
+  -- vim.cmd[[highlight CursorLine gui=underline guifg=NONE guibg=NONE cterm=underline ctermfg=NONE ctermbg=NONE]] -- set underline
+  vim.cmd[[highlight CursorLineNr term=bold cterm=NONE ctermfg=228 ctermbg=NONE guifg=#FFC800 guibg=NONE ]]
 end
 
 -- コメント中の特定の単語を強調表示する関数
