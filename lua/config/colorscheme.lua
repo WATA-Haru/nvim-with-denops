@@ -21,7 +21,7 @@ local function setup_todo_highlights()
   vim.cmd[[highlight NoteKeyword guibg=NONE guifg=#45B7D1]]  -- 青系 (NOTE用)
   vim.cmd[[highlight TempKeyword guibg=#FFA726 guifg=White]]  -- オレンジ系 (TEMP用)
   vim.cmd[[highlight FIXMEKeyword guibg=NONE guifg=#FFC800]]   -- 黄色系(FIXME用)
-  
+
   vim.api.nvim_create_autocmd(
     { "WinEnter", "BufRead", "BufNew", "Syntax" },
     {
@@ -36,6 +36,12 @@ local function setup_todo_highlights()
       end,
     }
   )
+
+  -- Diffの色を上書き
+  vim.cmd[[highlight DiffAdd ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e]]
+  vim.cmd[[highlight DiffChange ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851]]
+  vim.cmd[[highlight DiffDelete ctermfg=224 ctermbg=95 guifg=#ceb0b6 guibg=#53343b]]
+  vim.cmd[[highlight DiffText ctermfg=195 ctermbg=30 guifg=#c6c8d1 guibg=#5b7881]]
 end
 
 -- default
