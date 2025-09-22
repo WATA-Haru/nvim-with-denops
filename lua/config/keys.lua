@@ -52,5 +52,7 @@ map('n', '<leader>ze', '<cmd>lua NoNeckPain.toggle()<CR>', { desc = 'Toggle No N
 
 -- enable skkeleton
 --https://gemini.google.com/u/1/app/734338aea6c4eb51?hl=ja
-vim.api.nvim_set_keymap('i', '<C-j>', '<Plug>(skkeleton-toggle)', { noremap = true })
-vim.api.nvim_set_keymap('c', '<C-j>', '<Plug>(skkeleton-toggle)', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-j>', '<Plug>(skkeleton-enable)', opts)
+vim.api.nvim_set_keymap('c', '<C-j>', '<Plug>(skkeleton-enable)', opts)
+vim.api.nvim_set_keymap('i', '<C-l>', '<Plug>(skkeleton-disable)',opts)
+vim.api.nvim_set_keymap('c', '<C-l>', '<Plug>(skkeleton-disable)',opts)

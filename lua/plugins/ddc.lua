@@ -100,6 +100,19 @@ vim.pack.add({
   --  version = 'main'
   --},
 })
+
+-- skkelton setting
+local home_dir = os.getenv("HOME")
+local skk_path = home_dir .. "/.config/skk/SKK-JISYO.L"
+
+vim.fn['skkeleton#config']({ ['globalDictionaries'] = { { skk_path, 'euc-jp' } } })
+--vim.fn['skkeleton#config']({
+--  globalDictionaries = { skk_path, 'utf-8' },
+--})
+--vim.fn['skkeleton#config']({
+--  sources = { 'skk_dictionary' },
+--})
+
 -- Global DDC configuration
 vim.fn['ddc#custom#patch_global']('ui', 'pum')
 
@@ -107,13 +120,6 @@ vim.fn['ddc#custom#patch_global']('ui', 'pum')
 -- ddc-source-lsp supports native-lsp!
 -- https://github.com/Shougo/ddc-source-lsp/blob/main/doc/ddc-source-lsp.txt
 -- snip https://github.com/uga-rosa/ddc-source-vsnip/blob/main/doc/ddc-source-vsnip.txt
-
--- skkelton setting
-vim.fn["skkeleton#config"]({
-  globalDictionaries = {
-    '~/.config/skk/SKK-JISYO.L',
-  }
-})
 
 vim.fn['ddc#custom#patch_global']('sources', {'lsp', 'around', 'skkeleton', 'file', 'vsnip'})
 
@@ -214,12 +220,10 @@ vim.g.popup_preview_config = {
   winblend = 40,
 }
 
--- enable
--- ddc_previewer_floating.enable()
+-- enable other components
 vim.fn['signature_help#enable']()
 vim.fn['popup_preview#enable']()
 vim.fn['ddc#enable']()
-
 -- https://github.com/matsui54/denops-popup-preview.vim/issues/35
 local key_map_opts = {
     noremap = true,
@@ -318,4 +322,3 @@ vim.keymap.set('i', '<C-y>', '<Cmd>call pum#map#confirm()<CR>', { desc = 'Confir
 vim.keymap.set('i', '<C-e>', '<Cmd>call pum#map#cancel()<CR>', { desc = 'Cancel completion' })
 vim.keymap.set('i', '<PageDown>', '<Cmd>call pum#map#insert_relative_page(+1)<CR>', { desc = 'Next completion page' })
 vim.keymap.set('i', '<PageUp>', '<Cmd>call pum#map#insert_relative_page(-1)<CR>', { desc = 'Previous completion page' })
-
