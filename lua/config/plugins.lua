@@ -3,6 +3,7 @@ require('plugins.pack-manager') -- built in package manager wrapper
 require('plugins.tender') -- colorscheme
 require('plugins.iceberg') -- colorscheme
 require('plugins.lackluster') -- minimal colorscheme
+require('plugins.e-ink') -- minimal colorscheme
 require('plugins.treesitter') -- syntax highlighting
 require('plugins.oil') -- main file viewer to move and rename file
 require('plugins.fern') -- sub file viewer to see directory structure

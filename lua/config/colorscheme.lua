@@ -1,6 +1,7 @@
 -- Colorscheme configuration
 local default_colorscheme = "lackluster"
-local reading_colorscheme = "iceberg"
+-- local reading_colorscheme = "iceberg"
+local reading_colorscheme = "e-ink"
 local current_colorscheme = default_colorscheme
 
 local function override_colorscheme()
