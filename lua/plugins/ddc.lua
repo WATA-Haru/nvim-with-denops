@@ -149,7 +149,7 @@ vim.fn['ddc#custom#patch_global']('sourceOptions', {
     mark = 'lsp',
     forceCompletionPattern = [[\.\w*|:\w*|->\w*]],
     keywordPattern = [[\k+]],
-    sorters = {'sorter_lsp-kind'},
+    sorters = {},
     minAutoCompleteLength = 1,
     -- maxItems = 10,
   },

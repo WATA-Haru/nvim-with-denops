@@ -1,5 +1,6 @@
 -- telescope.nvim depends on plenary.nvim, so plenary must be loaded first
-vim.pack.add({ {
+vim.pack.add({
+  {
     src = 'https://github.com/nvim-lua/plenary.nvim',
     version = 'master'
   },
