@@ -50,3 +50,7 @@ vim.keymap.set('n', '<Plug>', '<Plug>Markdown_MoveToParentHeader', opts)
 -- no-neck-pain toggle
 map('n', '<leader>ze', '<cmd>lua NoNeckPain.toggle()<CR>', { desc = 'Toggle No Neck Pain nvim' })
 
+-- enable skkeleton
+--https://gemini.google.com/u/1/app/734338aea6c4eb51?hl=ja
+vim.api.nvim_set_keymap('i', '<C-j>', '<Plug>(skkeleton-toggle)', { noremap = true })
+vim.api.nvim_set_keymap('c', '<C-j>', '<Plug>(skkeleton-toggle)', { noremap = true })

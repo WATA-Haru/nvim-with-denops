@@ -91,6 +91,10 @@ vim.pack.add({
     src = 'https://github.com/matsui54/denops-popup-preview.vim',
     version = 'main'
   },
+  {
+    src = 'https://github.com/vim-skk/skkeleton.git',
+    version = 'main'
+  },
   --{
   --  src = 'https://github.com/uga-rosa/ddc-previewer-floating',
   --  version = 'main'
@@ -103,7 +107,15 @@ vim.fn['ddc#custom#patch_global']('ui', 'pum')
 -- ddc-source-lsp supports native-lsp!
 -- https://github.com/Shougo/ddc-source-lsp/blob/main/doc/ddc-source-lsp.txt
 -- snip https://github.com/uga-rosa/ddc-source-vsnip/blob/main/doc/ddc-source-vsnip.txt
-vim.fn['ddc#custom#patch_global']('sources', {'lsp', 'around', 'file', 'vsnip'})
+
+-- skkelton setting
+vim.fn["skkeleton#config"]({
+  globalDictionaries = {
+    '~/.config/skk/SKK-JISYO.L',
+  }
+})
+
+vim.fn['ddc#custom#patch_global']('sources', {'lsp', 'around', 'skkeleton', 'file', 'vsnip'})
 
 -- Source options configuration
 vim.fn['ddc#custom#patch_global']('sourceOptions', {
@@ -116,6 +128,14 @@ vim.fn['ddc#custom#patch_global']('sourceOptions', {
   around = {
     mark = 'A',
     maxItems = 5,
+  },
+  skkeleton = {
+    mark = 'skkeleton',
+    matchers = {},
+    sorters = {},
+    converters = {},
+    isVolatile = true,
+    minAutoCompleteLength = 1,
   },
   file = {
     mark = 'F',
