@@ -1,7 +1,7 @@
 -- Colorscheme configuration
-local default_colorscheme = "lackluster"
+local default_colorscheme = "e-ink"
+local reading_colorscheme = "lackluster"
 -- local reading_colorscheme = "iceberg"
-local reading_colorscheme = "e-ink"
 local current_colorscheme = default_colorscheme
 
 local function override_colorscheme()
@@ -10,6 +10,14 @@ local function override_colorscheme()
   vim.cmd[[highlight clear CursorLine ]]
   -- vim.cmd[[highlight CursorLine gui=underline guifg=NONE guibg=NONE cterm=underline ctermfg=NONE ctermbg=NONE]] -- set underline
   vim.cmd[[highlight CursorLineNr term=bold cterm=NONE ctermfg=228 ctermbg=NONE guifg=#FFC800 guibg=NONE ]]
+
+  vim.cmd[[highlight RenderMarkdownCode guibg=#343a40 ]]  -- Markdown code block background color
+
+  -- Diffの色を上書き
+  vim.cmd[[highlight DiffAdd ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e]]
+  vim.cmd[[highlight DiffChange ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851]]
+  vim.cmd[[highlight DiffDelete ctermfg=224 ctermbg=95 guifg=#ceb0b6 guibg=#53343b]]
+  vim.cmd[[highlight DiffText ctermfg=195 ctermbg=30 guifg=#c6c8d1 guibg=#5b7881]]
 end
 
 -- コメント中の特定の単語を強調表示する関数
@@ -37,12 +45,6 @@ local function setup_todo_highlights()
       end,
     }
   )
-
-  -- Diffの色を上書き
-  vim.cmd[[highlight DiffAdd ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e]]
-  vim.cmd[[highlight DiffChange ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851]]
-  vim.cmd[[highlight DiffDelete ctermfg=224 ctermbg=95 guifg=#ceb0b6 guibg=#53343b]]
-  vim.cmd[[highlight DiffText ctermfg=195 ctermbg=30 guifg=#c6c8d1 guibg=#5b7881]]
 end
 
 -- default
