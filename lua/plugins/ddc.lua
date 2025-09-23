@@ -315,6 +315,34 @@ vim.keymap.set('i', '<CR>',
 -- end, { expr = true, desc = 'DDC completion back' })
 --
 
+-- skkeleton enable only when skkeleton mode
+-- cf. https://trap.jp/post/1870/
+vim.api.nvim_create_autocmd("User", {
+  pattern = "skkeleton-enable-pre",
+  callback = function()
+    -- 現在のDDCバッファ設定を保存
+    local prev_buffer_config = vim.fn['ddc#custom#get_buffer']()
+    vim.g.skkeleton_prev_buffer_config = prev_buffer_config
+    
+    -- skkeletonソースのみに設定を変更
+    vim.fn['ddc#custom#patch_buffer']({
+      sources = {'skkeleton'}
+    })
+  end
+})
+
+-- skkeletonモードを終了した時の処理
+vim.api.nvim_create_autocmd("User", {
+  pattern = "skkeleton-disable-pre",
+  callback = function()
+    -- 保存しておいた元の設定に戻す
+    local prev_config = vim.g.skkeleton_prev_buffer_config
+    if prev_config then
+      vim.fn['ddc#custom#set_buffer'](prev_config)
+    end
+  end
+})
+
 -- Additional pum.vim keymaps for enhanced completion navigation
 vim.keymap.set('i', '<C-n>', '<Cmd>call pum#map#insert_relative(+1)<CR>', { desc = 'Next completion item' })
 vim.keymap.set('i', '<C-p>', '<Cmd>call pum#map#insert_relative(-1)<CR>', { desc = 'Previous completion item' })
