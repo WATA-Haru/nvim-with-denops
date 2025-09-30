@@ -1,4 +1,5 @@
 -- used plugin list
+require('plugins.denops') -- denops
 require('plugins.pack-manager') -- built in package manager wrapper
 require('plugins.tender') -- colorscheme
 require('plugins.iceberg') -- colorscheme
