@@ -19,6 +19,11 @@ map('n', '<Leader>?', '?\\C', opts)
 map('n', '<Leader>n', '/<Up>\\C<CR>', opts)
 map('n', '<Leader>N', '?<Up>\\C<CR>', opts)
 
+
+-- fern drawer
+map('n', '<Tab>', '<cmd>tabnext<CR>', opts)
+map('n', '<S-Tab>', '<cmd>tabprev<CR>', opts)
+
 -- terminal mode settings
 -- https://zenn.dev/ryo_kawamata/articles/improve-neovmi-terminal
 map('t', 'jk', '<C-\\><C-n>', opts)
