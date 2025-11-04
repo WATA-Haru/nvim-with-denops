@@ -10,6 +10,7 @@ local function override_colorscheme()
   -- vim.cmd[[highlight Visual  ctermfg=158 ctermbg=29 guifg=#c0c5b9 guibg=#45493e ]] -- NOTE: (wip) if darkmode is true on
   -- vim.cmd[[highlight RenderMarkdownCode guibg=#343a40 ]]  -- Markdown code block background color NOTE:: (wip) if darkmode is true on
   vim.cmd[[highlight RenderMarkdownCode guibg=#f5f5f5 ]]  -- Markdown code block background color NOTE:: (wip) if lightmode is true on
+  vim.cmd[[highlight Normal guibg=#FFF6D9 ]] -- NOTE: (wip) if lightmode is true on
 
   vim.cmd[[highlight clear CursorLine ]]
   -- vim.cmd[[highlight CursorLine gui=underline guifg=NONE guibg=NONE cterm=underline ctermfg=NONE ctermbg=NONE]] -- set underline
