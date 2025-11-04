@@ -3,6 +3,7 @@ require('plugins.denops') -- denops
 require('plugins.pack-manager') -- built in package manager wrapper
 require('plugins.tender') -- colorscheme
 require('plugins.iceberg') -- colorscheme
+require('plugins.nightfox') -- colorscheme
 require('plugins.lackluster') -- minimal colorscheme
 require('plugins.e-ink') -- minimal colorscheme
 require('plugins.treesitter') -- syntax highlighting

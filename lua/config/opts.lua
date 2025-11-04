@@ -22,3 +22,4 @@ vim.opt.listchars = {
 vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false -- preview floatingとかぶって見えにくくなるのでfase
+vim.opt.background = "light"
