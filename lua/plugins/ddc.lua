@@ -202,7 +202,7 @@ require("ddc_source_lsp_setup").setup()
 
 
 -- pum completetion setting
-vim.cmd[[highlight POPUP_NORMAL guibg=#595e50 guifg=White]]
+-- vim.cmd[[highlight POPUP_NORMAL guibg=#595e50 guifg=White]]
 vim.fn['pum#set_option']({
   border = "none",
   preview = false, -- pum help preview off
