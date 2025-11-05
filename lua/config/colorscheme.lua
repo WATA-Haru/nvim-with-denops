@@ -25,6 +25,9 @@ local function override_colorscheme()
   vim.cmd[[highlight DiffChange ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851]]
   vim.cmd[[highlight DiffDelete ctermfg=224 ctermbg=95 guifg=#ceb0b6 guibg=#53343b]]
   vim.cmd[[highlight DiffText ctermfg=195 ctermbg=30 guifg=#c6c8d1 guibg=#5b7881]]
+
+  -- GitSignsの色を上書き
+  vim.cmd[[highlight GitSignsChange guifg=#FFA726 ]]
 end
 
 -- コメント中の特定の単語を強調表示する関数
