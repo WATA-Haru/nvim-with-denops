@@ -206,7 +206,7 @@ require("ddc_source_lsp_setup").setup()
 vim.fn['pum#set_option']({
   border = "none",
   preview = false, -- pum help preview off
-  blend = 40,
+  blend = 30,
   horizontal_menu = "POPUP_NORMAL",
 })
 -- Configure signature help
@@ -217,7 +217,7 @@ vim.g.signature_help_config = {
 
 -- puopup preview setting
 vim.g.popup_preview_config = {
-  winblend = 40,
+  winblend = 5,
 }
 
 -- enable other components
